@@ -245,7 +245,7 @@
                                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                                     <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                    <a href="#" id="bestellen" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -422,6 +422,30 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+
+
+    <!-- Eventhandler for "Warenkorn" buttons -->
+    <script>
+        function init() {
+            $on($('#bestellen'), 'click', zumWarenkorb)
+
+            const form = document.querySelector('.needs-validation')
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        }
+
+        function zumWarenkorb(event) {
+            console.log("JAOIGEJAEGOIJA ES KLAPPT")
+        }
+    </script>
+
+
     </body>
 
 </html>
