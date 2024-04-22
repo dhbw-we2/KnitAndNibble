@@ -35,7 +35,7 @@
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     </head>
 
-    <body>
+    <body onload="init()">
 
         <!--Navigation bar-->
         <div id="nav-placeholder">
@@ -245,7 +245,7 @@
                                                 <p>Hmm Knitty Knitty, some warm shoeys</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                                     <p class="text-dark fs-5 fw-bold mb-0">34€</p>
-                                                    <button id="bestellen" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> In Warenkorb legen</button>
+                                                    <button id="bestellen" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="zumWarenkorb(1)"><i class="fa fa-shopping-bag me-2 text-primary"></i> In Warenkorb legen</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -261,7 +261,7 @@
                                                 <p>A warm comfy hat, awesome for children</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                                     <p class="text-dark fs-5 fw-bold mb-0">$23€</p>
-                                                    <button id="Ananas-bestellen" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> In Warenkorb legen</button>
+                                                    <button id="Ananas-bestellen" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="zumWarenkorb(2)"><i class="fa fa-shopping-bag me-2 text-primary"></i> In Warenkorb legen</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -277,7 +277,7 @@
                                                 <p>Woah, such warm comfy socks</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                                     <p class="text-dark fs-5 fw-bold mb-0">18€</p>
-                                                    <button id="Raspberries-bestellen" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> In Warenkorb legen</button>
+                                                    <button id="Raspberries-bestellen" class="btn border border-secondary rounded-pill px-3 text-primary" onclick="zumWarenkorb(3)"><i class="fa fa-shopping-bag me-2 text-primary"></i> In Warenkorb legen</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -334,8 +334,43 @@
 
     <!-- Eventhandler for "Warenkorn" buttons -->
     <script>
-        function zumWarenkorb(fruit) {
-            console.log("JAOIGEJAEGOIJA ES KLAPPT", fruit)
+        function init() {
+            //localStorage.setItem("Warenkorb", " ")
+        }
+
+
+        function zumWarenkorb(item) {
+            let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
+
+            if(warenkorb != null) {
+                console.log("JAOIGEJAEGOIJA ES KLAPPT", item)
+                switch (item) {
+                    case 1:
+                        warenkorb += ", Schuhe"
+                        break;
+                    case 2:
+                        warenkorb += ", Mütze"
+                        break;
+                    case 3:
+                        warenkorb += ", Socken"
+                        break;
+
+                }
+            } else {
+                console.log("JAOIGEJAEGOIJA ES KLAPPT", item)
+                switch (item) {
+                    case 1:
+                        warenkorb = "Schuhe"
+                        break;
+                    case 2:
+                        warenkorb = "Mütze"
+                        break;
+                    case 3:
+                        warenkorb = "Socken"
+                        break;
+                }
+            }
+            localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
         }
     </script>
 
