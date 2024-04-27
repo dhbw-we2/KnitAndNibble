@@ -51,48 +51,55 @@
 <div class="container-fluid py-5">
     <div class="container py-5">
         <h1 class="mb-4">Billing details</h1>
-        <form action="#">
+        <form class="needs-validation">
             <div class="row g-5">
                 <div class="col-md-12 col-lg-6 col-xl-7">
                     <div class="row">
                         <div class="col-md-12 col-lg-6">
                             <div class="form-floating w-100 mb-3">
-                                <input type="text" class="form-control" id="first-name" placeholder="Max">
+                                <input type="text" class="form-control" id="first-name" placeholder="Max" required>
                                 <label for="first-name">First Name<sup>*</sup></label>
+                                <div class="invalid-feedback">Bitte geben Sie Ihren Vornamen ein.</div>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-6">
                             <div class="form-floating w-100 mb-3">
-                                <input type="text" class="form-control" id="last-name" placeholder="Mustermann">
+                                <input type="text" class="form-control" id="last-name" placeholder="Mustermann" required>
                                 <label for="last-name">Last Name<sup>*</sup></label>
+                                <div class="invalid-feedback">Bitte geben Sie Ihren Nachnamen ein.</div>
                             </div>
                         </div>
                     </div>
                     <div class="form-floating w-100 mb-3">
-                        <input type="text" class="form-control" id="address" placeholder="House number, Street name">
+                        <input type="text" class="form-control" id="address" placeholder="House number, Street name" required>
                         <label for="address">Address<sup>*</sup></label>
+                        <div class="invalid-feedback">Bitte geben Sie Ihre Adresse ein.</div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-lg-3">
                             <div class="form-floating w-100 mb-3">
-                                <input type="text" class="form-control" id="postal-code" placeholder="68167">
+                                <input type="text" class="form-control" id="postal-code" placeholder="68167" required>
                                 <label for="postal-code">Postal Code<sup>*</sup></label>
+                                <div class="invalid-feedback">Bitte geben Sie Ihre Postleitzahl ein.</div>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-9">
                             <div class="form-floating w-100 mb-3">
-                                <input type="text" class="form-control" id="town" placeholder="Mannheim">
+                                <input type="text" class="form-control" id="town" placeholder="Mannheim" required>
                                 <label for="town">Town/City<sup>*</sup></label>
+                                <div class="invalid-feedback">Bitte geben Sie den Ort ein.</div>
                             </div>
                         </div>
                     </div>
                     <div class="form-floating w-100 mb-3">
-                        <input type="text" class="form-control" id="mobile" placeholder="mobile phone number">
+                        <input type="text" class="form-control" id="mobile" placeholder="mobile phone number" required>
                         <label for="mobile">Mobile<sup>*</sup></label>
+                        <div class="invalid-feedback">Bitte geben Sie Ihre Telefonnummer ein.</div>
                     </div>
                     <div class="form-floating w-100 mb-3">
-                        <input type="text" class="form-control" id="email" placeholder="Mustermann@muster.com">
+                        <input type="text" class="form-control" id="email" placeholder="Mustermann@muster.com" required>
                         <label for="email">Email Address<sup>*</sup></label>
+                        <div class="invalid-feedback">Bitte geben Sie Ihre Email-Adresse ein.</div>
                     </div>
                     <div class="form-check my-3">
                         <input class="form-check-input" type="checkbox" id="Address-1" name="Address" value="Address" onclick="second_address(this.checked)">
@@ -102,18 +109,21 @@
                     <div class="form-floating w-100 mb-3">
                         <input type="text" class="form-control" placeholder="House number, Street name" id="shipping_address" data-diff-shipping-address hidden>
                         <label for="shipping_address" data-diff-shipping-address hidden>Address<sup>*</sup> </label>
+                        <div class="invalid-feedback">Bitte geben Sie Ihre Lieferadresse ein.</div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-lg-3">
                             <div class="form-floating w-100 mb-3">
                                 <input type="text" class="form-control" id="shipping_zip_code" placeholder="68167" data-diff-shipping-address hidden>
                                 <label for="shipping_zip_code" data-diff-shipping-address hidden="">Postal code<sup>*</sup></label>
+                                <div class="invalid-feedback">Bitte geben Sie die Postleitzahl der Lieferadresse ein.</div>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-9">
                             <div class="form-floating w-100 mb-3">
                                 <input type="text" class="form-control" id="town_shipping" placeholder="Mannheim" data-diff-shipping-address hidden>
                                 <label for="town_shipping" data-diff-shipping-address hidden="">Town/City<sup>*</sup></label>
+                                <div class="invalid-feedback">Bitte geben Sie den Ort ein.</div>
                             </div>
                         </div>
                     </div>
@@ -254,7 +264,7 @@
                         </div>
                     </div>
                     <div class="row g-4 text-center align-items-center justify-content-center pt-4">
-                        <button type="button" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Place Order</button>
+                        <button type="button" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary" id="placeOrder" onclick="order()">Place Order</button>
                     </div>
                 </div>
             </div>
@@ -283,12 +293,28 @@
         if (checked) {
             hiddenFormItems.forEach(function(item) {
                 item.removeAttribute('hidden');
+                item.setAttribute('required', '');
             })
         } else {
             hiddenFormItems.forEach(function(item) {
                 item.setAttribute('hidden', '');
+                item.removeAttribute('required');
             })
         }
+    }
+
+    function order()    {
+
+        const form = document.querySelector('.needs-validation');
+
+        if(form.checkValidity())   {
+            placeOrder();
+        }
+        form.classList.add('was-validated');
+    }
+
+    function placeOrder()   {
+        console.log("only for testing purposes right now")
     }
 </script>
 
