@@ -32,7 +32,6 @@ const render = async () => {
     await loadPartials(source)
     const template = Handlebars.compile(source.innerHTML)
     const target = source.parentElement
-    console.log(target)
     target.insertAdjacentHTML('beforeend', template())
   }
 }
