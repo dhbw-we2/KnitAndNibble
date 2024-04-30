@@ -15,23 +15,43 @@ const $$ = query => Array.from(document.querySelectorAll(query))
  */
 const $on = (element, event, func) => {
   Array.isArray(element)
-    ? element.forEach(arrayElement => $on(arrayElement, event, func))
-    : element.addEventListener(event, func)
+      ? element.forEach(arrayElement => $on(arrayElement, event, func))
+      : element.addEventListener(event, func)
   return element
 }
 
-const render =  (data) => {
-  console.log(typeof data)
+/**
+ *
+ * @param pizzen
+ * @returns {Promise<void>}
+ */
+const render = async () => {
   const templates = $$('[type="text/x-handlebars-template"]')
 
-  for(const source of templates) {
+  for (const source of templates) {
+    await loadPartials(source)
     const template = Handlebars.compile(source.innerHTML)
-    const target = source.nextElementSibling
-    target.innerHTML = template(data)
+    const target = source.parentElement
+    console.log(target)
+    target.insertAdjacentHTML('beforeend', template())
+  }
+}
+
+/**
+ *
+ * @param source
+ * @returns {Promise<void>}
+ */
+async function loadPartials(source) {
+  const partialNames = source.innerText.match(/(?<={{>)(.*?)(?=\s|}})/g)
+  if (partialNames) {
+    for (let name of partialNames) {
+      name = name.trim()
+      const fileName = name + '.html'
+      const partialCode = await fetch(fileName).then(response => response.text())
+      Handlebars.registerPartial(name, partialCode)
+    }
   }
 }
 
 const PIZZA_KEY = "selectedPizzas"
-
-
-

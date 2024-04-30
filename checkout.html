@@ -28,22 +28,19 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
-    <!-- Script for including the navbar on every page -->
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/handlebars.min-v4.7.8.js"></script>
+    <script src="js/vanilla.js"></script>
 </head>
 
-<body>
+<body onload = "render()">
 
 <!--Navigation bar-->
-<div id="nav-placeholder">
-
+<div>
+    <script type="text/x-handlebars-template">
+        {{>partials/bar}}
+    </script>
 </div>
-
-<script>
-    $(function(){
-        $("#nav-placeholder").load("bar.html");
-    });
-</script>
 <!--end of Navigation bar-->
 
 
@@ -275,15 +272,11 @@
 
 
 <!--Footer-->
-<div id="footer-placeholder">
-
+<div>
+    <script type="text/x-handlebars-template">
+        {{>partials/footer}}
+    </script>
 </div>
-
-<script>
-    $(function(){
-        $("#footer-placeholder").load("footer.html");
-    });
-</script>
 <!--end of Footer-->
 
 <script>
