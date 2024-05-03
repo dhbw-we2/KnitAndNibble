@@ -34,6 +34,7 @@
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/handlebars.min-v4.7.8.js"></script>
+    <script src="js/daten.js"></script>
     <script src="js/vanilla.js"></script>
 </head>
 
@@ -312,8 +313,11 @@
                                 </div>
                             </div>-->
 
+
                             <script type="text/x-handlebars-template">
-                                {{> partials/shop_item name=name description=description image=image }}
+                                {{#each SHOP_ITEM}}
+                                    {{>partials/shop_item}}
+                                {{/each}}
                             </script>
 
 
