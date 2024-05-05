@@ -21,18 +21,18 @@ const $on = (element, event, func) => {
 }
 
 /**
- *
- * @param pizzen
+ * Durchläuft das HTML-Dokument und rendert sämtliche Handlebars-Script-Tags
+ * @param data - die zu rendernden Daten
  * @returns {Promise<void>}
  */
-const render = async () => {
+const render = async (data) => {
   const templates = $$('[type="text/x-handlebars-template"]')
 
   for (const source of templates) {
     await loadPartials(source)
     const template = Handlebars.compile(source.innerHTML)
     const target = source.parentElement
-    target.insertAdjacentHTML('beforeend', template())
+    target.insertAdjacentHTML('beforeend', template(data))
   }
 }
 

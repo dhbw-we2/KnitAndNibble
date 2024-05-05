@@ -2,16 +2,22 @@ SHOP_ITEM = [
   {
     name: "Self knitted Shoes",
     description: "Hmm Knitty Knitty, some warm shoeys",
-    image: "shoes_example_image.jpg"
+    image: "shoes_example_image.jpg",
+    preis: "1€",
+    category: "wearable"
   },
   {
     name: "Hat",
     description: "A warm comfy hat, awesome for children",
-    image: "hat_example_image.jpg"
+    image: "hat_example_image.jpg",
+    preis: "2",
+    category: "wearable"
   },
   {
     name: "Soggies",
-    description: "Woah, such warm comfy socks",
-    image: "socks_example_image.jpg"
+    description: "Woah, such warm comfy socks, we still need a 2nd line",
+    image: "socks_example_image.jpg",
+    preis: "3",
+    category: "wearable"
   }
 ]

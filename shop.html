@@ -313,15 +313,13 @@
                                 </div>
                             </div>-->
 
-
-                            <script type="text/x-handlebars-template">
-                                {{#each SHOP_ITEM}}
+                            <!--<div class="col">-->
+                                <script type="text/x-handlebars-template">
                                     {{>partials/shop_item}}
-                                {{/each}}
-                            </script>
+                                </script>
+                            <!--</div>-->
 
-
-                            <!--    <div class="col-12">
+                                <!--<div class="col-12">
                                     <div class="pagination d-flex justify-content-center mt-5">
                                         <a href="#" class="rounded">&laquo;</a>
                                         <a href="#" class="active rounded">1</a>
@@ -368,6 +366,7 @@
 <script>
     function init() {
         //localStorage.setItem("Warenkorb", " ")
+        render(SHOP_ITEM)
     }
 
 
