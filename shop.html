@@ -36,6 +36,7 @@
     <script src="js/handlebars.min-v4.7.8.js"></script>
     <script src="js/daten.js"></script>
     <script src="js/vanilla.js"></script>
+    <script src="js/shop.js"></script>
 </head>
 
 <body onload = "init(); render()">
@@ -367,41 +368,6 @@
     function init() {
         //localStorage.setItem("Warenkorb", " ")
         render(SHOP_ITEM)
-    }
-
-
-    function zumWarenkorb(item) {
-        let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
-
-        if (warenkorb != null) {
-            console.log("JAOIGEJAEGOIJA ES KLAPPT", item)
-            switch (item) {
-                case 1:
-                    warenkorb += ", Schuhe"
-                    break;
-                case 2:
-                    warenkorb += ", Mütze"
-                    break;
-                case 3:
-                    warenkorb += ", Socken"
-                    break;
-
-            }
-        } else {
-            console.log("JAOIGEJAEGOIJA ES KLAPPT", item)
-            switch (item) {
-                case 1:
-                    warenkorb = "Schuhe"
-                    break;
-                case 2:
-                    warenkorb = "Mütze"
-                    break;
-                case 3:
-                    warenkorb = "Socken"
-                    break;
-            }
-        }
-        localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
     }
 </script>
 
