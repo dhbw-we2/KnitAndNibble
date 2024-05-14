@@ -30,10 +30,11 @@
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/handlebars.min-v4.7.8.js"></script>
+    <script src="js/daten.js"></script>
     <script src="js/vanilla.js"></script>
 </head>
 
-<body onload = "render()">
+<body onload = "init()">
 
 <!--Navigation bar-->
 <div>
@@ -142,88 +143,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center mt-2">
-                                        <img src="img/vegetable-item-2.jpg" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
-                                    </div>
-                                </th>
-                                <td class="py-5">Awesome Brocoli</td>
-                                <td class="py-5">$69.00</td>
-                                <td class="py-5">2</td>
-                                <td class="py-5">$138.00</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center mt-2">
-                                        <img src="img/vegetable-item-5.jpg" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
-                                    </div>
-                                </th>
-                                <td class="py-5">Potatoes</td>
-                                <td class="py-5">$69.00</td>
-                                <td class="py-5">2</td>
-                                <td class="py-5">$138.00</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center mt-2">
-                                        <img src="img/vegetable-item-3.png" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
-                                    </div>
-                                </th>
-                                <td class="py-5">Big Banana</td>
-                                <td class="py-5">$69.00</td>
-                                <td class="py-5">2</td>
-                                <td class="py-5">$138.00</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                </th>
-                                <td class="py-5"></td>
-                                <td class="py-5"></td>
-                                <td class="py-5">
-                                    <p class="mb-0 text-dark py-3">Subtotal</p>
-                                </td>
-                                <td class="py-5">
-                                    <div class="py-3 border-bottom border-top">
-                                        <p class="mb-0 text-dark">$414.00</p>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                </th>
-                                <td class="py-5">
-                                    <p class="mb-0 text-dark py-4">Shipping</p>
-                                </td>
-                                <td colspan="3" class="py-5">
-                                    <div class="form-check text-start">
-                                        <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-1" name="Shipping-1" value="Shipping">
-                                        <label class="form-check-label" for="Shipping-1">Free Shipping</label>
-                                    </div>
-                                    <div class="form-check text-start">
-                                        <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-2" name="Shipping-1" value="Shipping">
-                                        <label class="form-check-label" for="Shipping-2">Flat rate: $15.00</label>
-                                    </div>
-                                    <div class="form-check text-start">
-                                        <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-3" name="Shipping-1" value="Shipping">
-                                        <label class="form-check-label" for="Shipping-3">Local Pickup: $8.00</label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                </th>
-                                <td class="py-5">
-                                    <p class="mb-0 text-dark text-uppercase py-3">TOTAL</p>
-                                </td>
-                                <td class="py-5"></td>
-                                <td class="py-5"></td>
-                                <td class="py-5">
-                                    <div class="py-3 border-bottom border-top">
-                                        <p class="mb-0 text-dark">$135.00</p>
-                                    </div>
-                                </td>
-                            </tr>
+                                <div>
+                                    <script type="text/x-handlebars-template">
+                                        {{>partials/checkout_item}}
+                                   </script>
+                                </div>
                             </tbody>
                         </table>
                     </div>
@@ -280,35 +204,51 @@
 <!--end of Footer-->
 
 <script>
+    function init() {
+        let item_names = JSON.parse(localStorage.getItem("Warenkorb"))
+        let items = []
+
+        for (let i in item_names) {
+            items.push(getItem(item_names[i]))
+        }
+
+        render(items)
+    }
+
+    function getItem(item_name) {
+        return SHOP_ITEM.find(item => item.name === item_name)
+    }
+
     function second_address(checked) {
         var hiddenFormItems = document.querySelectorAll('[data-diff-shipping-address]');
 
         if (checked) {
-            hiddenFormItems.forEach(function(item) {
+            hiddenFormItems.forEach(function (item) {
                 item.removeAttribute('hidden');
                 item.setAttribute('required', '');
             })
         } else {
-            hiddenFormItems.forEach(function(item) {
+            hiddenFormItems.forEach(function (item) {
                 item.setAttribute('hidden', '');
                 item.removeAttribute('required');
             })
         }
     }
 
-    function order()    {
+    function order() {
 
         const form = document.querySelector('.needs-validation');
 
-        if(form.checkValidity())   {
+        if (form.checkValidity()) {
             placeOrder();
         }
         form.classList.add('was-validated');
     }
 
-    function placeOrder()   {
-        console.log("only for testing purposes right now")
-    }
+    function placeOrder() {
+            console.log("only for testing purposes right now")
+        }
+
 </script>
 
 <!-- JavaScript Libraries -->
