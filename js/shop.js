@@ -6,9 +6,10 @@ function zumWarenkorb(item_name) {
 
     let item = getItem(item_name)
     let index = findInList(warenkorb, item_name)
+    console.log("t")
 
     if (index !== -1){
-        warenkorb[0].amount ++
+        warenkorb[index].amount ++
     } else {
         item.amount = 1
         warenkorb.push(item)
@@ -27,7 +28,7 @@ function findInList(warenkorb, item_name)   {
 
 // Product Quantity
     function quantityButton(btn) {
-        console.log("t")
+        console.log("not working currently")
         var button = $(btn);
         var oldValue = button.parent().parent().find('input').val();
         if (button.hasClass('btn-plus')) {

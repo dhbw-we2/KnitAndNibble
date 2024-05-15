@@ -203,13 +203,7 @@
 
 <script>
     function init() {
-        let item_names = JSON.parse(localStorage.getItem("Warenkorb"))
-        let items = []
-
-        for (let i in item_names) {
-            items.push(getItem(item_names[i]))
-        }
-
+        let items = JSON.parse(localStorage.getItem("Warenkorb"))
         render(items)
     }
 
