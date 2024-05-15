@@ -1,12 +1,28 @@
-function zumWarenkorb(item) {
+function zumWarenkorb(item_name) {
     let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
-    if (warenkorb == null) {
+    if (warenkorb == null){
         warenkorb = []
     }
 
-    console.log("ES KLAPPT", item)
-    warenkorb.push(item)
+    let item = getItem(item_name)
+    let index = findInList(warenkorb, item_name)
+
+    if (index !== -1){
+        warenkorb[0].amount ++
+    } else {
+        item.amount = 1
+        warenkorb.push(item)
+    }
+
     localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
+}
+
+function getItem(item_name)  {
+    return SHOP_ITEM.find(({ name }) => name === item_name)
+}
+
+function findInList(warenkorb, item_name)   {
+    return warenkorb.findIndex((item) => item.name === item_name)
 }
 
 // Product Quantity
@@ -25,3 +41,4 @@ function zumWarenkorb(item) {
     }
         button.parent().parent().find('input').val(newVal);
     }
+
