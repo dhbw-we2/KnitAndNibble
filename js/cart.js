@@ -23,26 +23,45 @@ function update_quantity(name, amount_text, textField)  {
         item_total(warenkorb[index], textField.parentElement.parentElement.nextElementSibling.firstElementChild) //There definitely is a better way to navigate through these elements
     }
     localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
-    update_total()
+    update_total("subtotal_cart", "total_cart")
 }
 
 function item_total(element, textField) {
     textField.textContent = parseFloat(element.price * element.amount).toFixed(2) + '€' //parseFloat is necessary because of rounding errors
 }
 
-function update_total() {
+function update_total(idSubTotal, idTotal) {
+    let subTotal = getSubTotal()
+
+    document.getElementById(idSubTotal).innerHTML = subTotal + "€"
+    let total = getTotal(subTotal)
+    document.getElementById(idTotal).innerHTML = total + "€"
+}
+
+function getSubTotal() {
     let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
     let total = 0
-    let shipping_cost = 3
-    let free_shipping = 50
 
     for(let i in warenkorb) {
         total += warenkorb[i].price * warenkorb[i].amount
     }
-    total = parseFloat(total).toFixed(2)
-    document.getElementById("subtotal").innerHTML = total
+    return parseFloat(total).toFixed(2)
+}
+
+function getTotal(total) {
+    let shipping_cost = 3
+    let free_shipping = 50
+
     if(total <= free_shipping) {
         total = (parseFloat(total) + shipping_cost).toFixed(2)
     }
-    document.getElementById("total").innerHTML = total
+    return total
+}
+
+function get_totals(items)  {
+    for(let i in items)  {
+        items[i].total = items[i].price * items[i].amount
+        items[i].total = parseFloat(items[i].total).toFixed(2) //necessary because of rounding errors
+    }
+    return items
 }

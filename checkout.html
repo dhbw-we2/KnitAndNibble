@@ -32,6 +32,7 @@
     <script src="js/handlebars.min-v4.7.8.js"></script>
     <script src="js/daten.js"></script>
     <script src="js/vanilla.js"></script>
+    <script src="js/cart.js"></script>
 </head>
 
 <body onload = "init()">
@@ -147,7 +148,21 @@
                                         {{>partials/checkout_item}}
                                    </script>
                             </tbody>
+                            <tr>
+                                <td>Subtotal:</td>
+                                <td colspan="4" id = checkout_subTotal>Error</td>
+                            </tr>
+                            <tr>
+                                <td>Shipping Cost:</td>
+                                <td colspan="4" id = shipping_cost>Error</td>
+                            </tr>
+                            <tr>
+                                <td>Total:</td>
+                                <td colspan="4" id = checkout_total>Error</td>
+                            </tr>
+
                         </table>
+
                     </div>
                     <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
                         <div class="col-12">
@@ -204,11 +219,9 @@
 <script>
     function init() {
         let items = JSON.parse(localStorage.getItem("Warenkorb"))
+        items = get_totals(items)
         render(items)
-    }
-
-    function getItem(item_name) {
-        return SHOP_ITEM.find(item => item.name === item_name)
+        calculate_total()
     }
 
     function second_address(checked) {
@@ -240,6 +253,20 @@
     function placeOrder() {
             console.log("only for testing purposes right now")
         }
+
+    function calculate_total()  {
+        let shipping_cost = 3
+        let free_shipping = 50
+
+        update_total("checkout_subTotal", "checkout_total")
+        let subtotal = parseFloat(document.getElementById("checkout_subTotal").innerHTML)
+
+        if(subtotal > free_shipping) {
+            document.getElementById("shipping_cost").innerHTML = 0 + "€"
+        } else {
+            document.getElementById("shipping_cost").innerHTML = shipping_cost + "€"
+        }
+    }
 
 </script>
 
