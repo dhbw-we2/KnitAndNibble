@@ -65,3 +65,19 @@ function get_totals(items)  {
     }
     return items
 }
+
+function discard(name, btn) {
+    let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
+    let index = findInList(warenkorb, name)
+
+    let rowIndex = btn.parentElement.parentElement.rowIndex
+    //delete the item from the cart page
+    document.getElementById("cart_table").deleteRow(rowIndex)
+    //delete the item in the local Storage
+    warenkorb.splice(index, 1)
+    localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
+    //recalculate the total in the cart page
+    update_total("subtotal_cart", "total_cart")
+    //update the cart symbol in the navbar
+    document.getElementById("cart_symbol").innerHTML --
+}
