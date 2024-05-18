@@ -27,12 +27,14 @@ const $on = (element, event, func) => {
  */
 const render = async (data) => {
   const templates = $$('[type="text/x-handlebars-template"]')
-
   for (const source of templates) {
     await loadPartials(source)
     const template = Handlebars.compile(source.innerHTML)
     const target = source.parentElement
     target.insertAdjacentHTML('beforeend', template(data))
+    if(source.textContent.includes("partials/bar")) {
+      document.getElementById("cart_symbol").innerHTML = get_item_count()
+    }
   }
 }
 
@@ -51,6 +53,16 @@ async function loadPartials(source) {
       Handlebars.registerPartial(name, partialCode)
     }
   }
+}
+
+function get_item_count() {
+  if(localStorage.getItem("Warenkorb") !== null)  {
+    let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
+    return warenkorb.length
+  } else {
+    return 0
+  }
+
 }
 
 const PIZZA_KEY = "selectedPizzas"

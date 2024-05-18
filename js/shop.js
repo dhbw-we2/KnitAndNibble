@@ -6,13 +6,13 @@ function zumWarenkorb(item_name) {
 
     let item = getItem(item_name)
     let index = findInList(warenkorb, item_name)
-    console.log("t")
 
     if (index !== -1){
         warenkorb[index].amount ++
     } else {
         item.amount = 1
         warenkorb.push(item)
+        document.getElementById("cart_symbol").innerHTML ++
     }
 
     localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
