@@ -26,3 +26,20 @@ function findInList(warenkorb, item_name)   {
     return warenkorb.findIndex((item) => item.name === item_name)
 }
 
+function searchBarSearch(searchFor) {
+    let allItems = JSON.parse(localStorage.getItem('ITEMS_SHOWN'))
+    let shownItems = []
+    localStorage.clear("ITEMS_SHOWN")
+    for (let i in allItems){
+        console.log(allItems[i].name)
+        if (allItems[i].name == searchFor){
+            console.log("FOUND ITEM")
+            shownItems.push(allItems[i])
+        }
+    }
+    console.log(shownItems)
+
+    localStorage.setItem("ITEMS_SHOWN", JSON.stringify(shownItems));
+
+    render(JSON.parse(localStorage.getItem('ITEMS_SHOWN')))
+}

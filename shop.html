@@ -71,7 +71,8 @@
             <div style="float: right">
                 <div class="searchbar">
                     <input class="search_input" type="text" name="" placeholder="Search...">
-                    <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                    <button href="#" class="search_icon" onclick="xlink"><i class="fas fa-search"></i></button>
+
                 </div>
             </div>
         </div>
@@ -376,8 +377,10 @@
 <!-- Eventhandler for "Warenkorn" buttons -->
 <script>
     function init() {
-        //localStorage.setItem("Warenkorb", " ")
-        render(SHOP_ITEM)
+        console.log("Shop items got reset to SHOP_IT3M")
+        localStorage.setItem("ITEMS_SHOWN", JSON.stringify(SHOP_ITEM));
+
+        render(JSON.parse(localStorage.getItem('ITEMS_SHOWN')))
     }
 </script>
 
