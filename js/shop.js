@@ -41,5 +41,13 @@ function searchBarSearch(searchFor) {
 
     localStorage.setItem("ITEMS_SHOWN", JSON.stringify(shownItems));
 
+    //delete all shop-items
+    const items = document.querySelectorAll('.shop-item');
+
+    items.forEach(item => {
+        item.remove();
+    });
+
+    //render new shop-items
     render(JSON.parse(localStorage.getItem('ITEMS_SHOWN')))
 }
