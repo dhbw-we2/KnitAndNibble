@@ -21,3 +21,22 @@ SHOP_ITEM = [
     category: "wearable"
   }
 ]
+
+SHOP_CATEGORIES = [
+  {
+    name: "Socks",
+    numberOfItems: 1,
+  },
+  {
+    name: "other Wearables",
+    numberOfItems: 1,
+  },
+  {
+    name: "Cake",
+    numberOfItems: 2,
+  },
+  {
+    name: "Cookies",
+    numberOfItems: 2,
+  }
+]
