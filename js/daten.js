@@ -1,42 +1,66 @@
-SHOP_ITEM = [
+SHOP_DATA = [
   {
-    name: "Self knitted Shoes",
-    description: "Hmm Knitty Knitty, some warm shoeys",
-    image: "shoes_example_image.jpg",
-    price: "1",
-    category: "wearable"
+    ITEMS: [
+        {
+          name: "Self knitted Shoes",
+          description: "Hmm Knitty Knitty, some warm shoeys",
+          image: "shoes_example_image.jpg",
+          price: "1",
+          category: "wearable"
+        },
+        {
+          name: "Hat",
+          description: "A warm comfy hat, awesome for children",
+          image: "hat_example_image.jpg",
+          price: "2",
+          category: "wearable"
+        },
+        {
+          name: "Soggies",
+          description: "Woah, such warm comfy socks, we still need a 2nd line",
+          image: "socks_example_image.jpg",
+          price: "2.99",
+          category: "wearable"
+        }
+        ]
   },
   {
-    name: "Hat",
-    description: "A warm comfy hat, awesome for children",
-    image: "hat_example_image.jpg",
-    price: "2",
-    category: "wearable"
-  },
-  {
-    name: "Soggies",
-    description: "Woah, such warm comfy socks, we still need a 2nd line",
-    image: "socks_example_image.jpg",
-    price: "2.99",
-    category: "wearable"
+    CATEGORIES: [
+      {
+        category_name: "Socks",
+            category_numberOfItems: 1,
+      },
+      {
+        category_name: "other Wearables",
+            category_numberOfItems: 1,
+      },
+      {
+        category_name: "Cake",
+            category_numberOfItems: 2,
+      },
+      {
+        category_name: "Cookies",
+            category_numberOfItems: 2,
+      }
+    ]
   }
 ]
 
 SHOP_CATEGORIES = [
   {
-    name: "Socks",
-    numberOfItems: 1,
+    category_name: "Socks",
+    category_numberOfItems: 1,
   },
   {
-    name: "other Wearables",
-    numberOfItems: 1,
+    category_name: "other Wearables",
+    category_numberOfItems: 1,
   },
   {
-    name: "Cake",
-    numberOfItems: 2,
+    category_name: "Cake",
+    category_numberOfItems: 2,
   },
   {
-    name: "Cookies",
-    numberOfItems: 2,
+    category_name: "Cookies",
+    category_numberOfItems: 2,
   }
 ]

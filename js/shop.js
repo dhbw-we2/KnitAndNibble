@@ -51,5 +51,15 @@ function searchBarSearch() {
     });
 
     //render new shop-items
-    render(JSON.parse(localStorage.getItem('ITEMS_SHOWN')))
+    render(
+        {
+            name: SHOP_DATA.ITEMS.name,
+            description: SHOP_DATA.ITEMS.description,
+            price: SHOP_DATA.ITEMS.price,
+            image: SHOP_DATA.ITEMS.image,
+
+            category_name: SHOP_DATA.CATEGORIES.category_name,
+            category_numberOfItems: SHOP_DATA.CATEGORIES.category_numberOfItems,
+        }
+    )
 }
