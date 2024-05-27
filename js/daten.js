@@ -46,21 +46,3 @@ SHOP_DATA = [
   }
 ]
 
-SHOP_CATEGORIES = [
-  {
-    category_name: "Socks",
-    category_numberOfItems: 1,
-  },
-  {
-    category_name: "other Wearables",
-    category_numberOfItems: 1,
-  },
-  {
-    category_name: "Cake",
-    category_numberOfItems: 2,
-  },
-  {
-    category_name: "Cookies",
-    category_numberOfItems: 2,
-  }
-]
