@@ -378,24 +378,10 @@
 
 <script>
     function init() {
-        localStorage.clear()
-
-
-        console.log("Shop items got reset to SHOP_IT3M")
-        localStorage.setItem("DATA", JSON.stringify(SHOP_DATA));
-
-        console.log(SHOP_DATA[0])
+        localStorage.setItem("ITEMS_SHOWN", JSON.stringify(SHOP_DATA));
         // SHOP_DATA[0] = SHOP_DATA.ITEMS
         // Funktioniert grad alles noch nicht so richtig
-        render({
-                name: SHOP_DATA[0].name,
-                description: SHOP_DATA[0].description,
-                price: SHOP_DATA[0].price,
-                image: SHOP_DATA[0].image,
-
-                category_name: SHOP_DATA[1].category_name,
-                category_numberOfItems: SHOP_DATA[1].category_numberOfItems,
-        })
+        render({shop_data:SHOP_DATA})
     }
 </script>
 

@@ -29,37 +29,31 @@ function findInList(warenkorb, item_name)   {
 function searchBarSearch() {
     let searchFor = $('.search_input').value
 
-    let allItems = SHOP_ITEM
-    let shownItems = []
+    let shopData= SHOP_DATA
+    let shownItems = JSON.parse(localStorage.getItem('ITEMS_SHOWN'))
+    shownItems.ITEMS = []
+
+
     localStorage.clear("ITEMS_SHOWN")
-    for (let i in allItems){
-        console.log(allItems[i].name)
-        if (allItems[i].name.toLowerCase() === searchFor.toLowerCase()){
+    for (i in shopData.ITEMS){
+        if (shopData.ITEMS[i].name.toLowerCase() === searchFor.toLowerCase()){
             console.log("FOUND ITEM")
-            shownItems.push(allItems[i])
+            shownItems.ITEMS.push(shopData.ITEMS[i])
         }
     }
-    console.log(shownItems)
 
+
+
+    console.log(shownItems)
     localStorage.setItem("ITEMS_SHOWN", JSON.stringify(shownItems));
 
     //delete all shop-items
-    const items = document.querySelectorAll('.shop-item');
+    const items = document.querySelectorAll('.shop-partial');
 
     items.forEach(item => {
         item.remove();
     });
 
     //render new shop-items
-    render(
-        {
-            name: SHOP_DATA.ITEMS.name,
-            description: SHOP_DATA.ITEMS.description,
-            price: SHOP_DATA.ITEMS.price,
-            image: SHOP_DATA.ITEMS.image,
-
-            category_name: SHOP_DATA.CATEGORIES.category_name,
-            category_numberOfItems: SHOP_DATA.CATEGORIES.category_numberOfItems,
-        }
-    )
+    render({shop_data: shownItems})
 }
