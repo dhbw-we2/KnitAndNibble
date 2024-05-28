@@ -29,20 +29,33 @@ function findInList(warenkorb, item_name)   {
 function searchBarSearch() {
     let searchFor = $('.search_input').value
 
-    let shopData= SHOP_DATA
+    let shopData = SHOP_DATA
     let shownItems = JSON.parse(localStorage.getItem('ITEMS_SHOWN'))
     shownItems.ITEMS = []
 
 
     localStorage.clear("ITEMS_SHOWN")
-    for (i in shopData.ITEMS){
-        if (shopData.ITEMS[i].name.toLowerCase() === searchFor.toLowerCase()){
+    for (i in shopData.ITEMS) {
+        if (shopData.ITEMS[i].name.toLowerCase() === searchFor.toLowerCase()) {
             console.log("FOUND ITEM")
             shownItems.ITEMS.push(shopData.ITEMS[i])
         }
     }
+}
+
+function categorySearch(searchFor) {
+        let shopData= SHOP_DATA
+        let shownItems = JSON.parse(localStorage.getItem('ITEMS_SHOWN'))
+        shownItems.ITEMS = []
 
 
+        localStorage.clear("ITEMS_SHOWN")
+        for (i in shopData.ITEMS){
+            if (shopData.ITEMS[i].category.toLowerCase() === searchFor.toLowerCase()){
+                console.log("FOUND ITEM")
+                shownItems.ITEMS.push(shopData.ITEMS[i])
+            }
+        }
 
     console.log(shownItems)
     localStorage.setItem("ITEMS_SHOWN", JSON.stringify(shownItems));

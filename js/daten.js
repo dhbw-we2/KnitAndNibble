@@ -19,7 +19,7 @@ SHOP_DATA = {
             description: "Woah, such warm comfy socks, we still need a 2nd line",
             image: "socks_example_image.jpg",
             price: "2.99",
-            category: "wearable"
+            category: "socks"
         }
     ],
     CATEGORIES: [
@@ -28,16 +28,16 @@ SHOP_DATA = {
             category_numberOfItems: 1,
       },
       {
-        category_name: "other Wearables",
-            category_numberOfItems: 1,
+        category_name: "Wearable",
+            category_numberOfItems: 2,
       },
       {
         category_name: "Cake",
-            category_numberOfItems: 2,
+            category_numberOfItems: 0,
       },
       {
         category_name: "Cookies",
-            category_numberOfItems: 2,
+            category_numberOfItems: 0,
       }
     ]
 }
