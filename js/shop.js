@@ -33,32 +33,56 @@ let searchForPrice = 0
 function searchbar() {
     let searchFor = $('.search_input').value
     searchForName = searchFor
+    startSearch()
 }
 
 function categorySearch(searchFor) {
-        searchForCategory = searchFor
+    searchForCategory = searchFor
+    startSearch()
 }
 
 function priceSearch() {
     let searchFor = $('#rangeInput').value
     searchForPrice = searchFor
+    startSearch()
 }
 
 function startSearch() {
-    priceSearch()
-    searchbar()
-
     let shownItems = JSON.parse(JSON.stringify(SHOP_DATA));
-    console.log(JSON.parse(JSON.stringify(SHOP_DATA)))
+    shownItems.ITEMS = []
 
     localStorage.removeItem("ITEMS_SHOWN")
 
-    console.log(shownItems)
-    if(typeof searchForName != "undefined"){shownItems.ITEMS = shownItems.ITEMS.filter((item) => item.name.toLowerCase() === searchForName.toLowerCase())}
-    console.log(shownItems)
-    if(typeof searchForCategory != "undefined"){shownItems.ITEMS = shownItems.ITEMS.filter((item) => item.category.toLowerCase() === searchForCategory.toLowerCase())}
-    console.log(shownItems)
-    if(searchForPrice !== 0){shownItems.ITEMS = shownItems.ITEMS.filter((item) => item.price <= searchForPrice)}
+    SHOP_DATA.ITEMS.forEach(item => {
+        let matchesName = true;
+        let matchesCategory = true;
+        let matchesPrice = true;
+
+        // Filter für den Namen
+        if (searchForName && searchForName.length > 0) {
+            matchesName = item.name.toLowerCase().includes(searchForName.toLowerCase());
+        }
+
+        // Filter für die Kategorie
+        if (searchForCategory) {
+            matchesCategory = (item.category === searchForCategory);
+            console.log(matchesCategory);
+        }
+
+        // Filter für den Preis
+        if (searchForPrice > 0) {
+            matchesPrice = item.price <= searchForPrice;
+        }
+
+        // Artikel hinzufügen, wenn alle Kriterien erfüllt sind
+        if (matchesName && matchesCategory && matchesPrice) {
+            shownItems.ITEMS.push(item);
+        }
+    });
+
+    console.log(searchForName)
+    console.log(searchForCategory)
+    console.log(searchForPrice)
     console.log(shownItems)
 
     //delete all shop-items
@@ -84,16 +108,30 @@ function startSearchZwei() {
     localStorage.removeItem("ITEMS_SHOWN");
 
     shopData.ITEMS.forEach(item => {
-        if ((searchForName && item.name.toLowerCase() === searchForName.toLowerCase()) ||
-            (searchForCategory && item.category.toLowerCase() === searchForCategory.toLowerCase()) ||
-            (searchForPrice !== 0 && item.price <= searchForPrice)) {
-            console.log("IF Ausgelöst, \n" + item.name)
-            shownItems.ITEMS.push(item);
+        let matchesName = true;
+        let matchesCategory = true;
+        let matchesPrice = true;
+
+        // Filter für den Namen
+        if (searchForName && searchForName.length > 0) {
+            matchesName = item.name.toLowerCase().includes(searchForName);
+        }
+
+        // Filter für die Kategorie
+        if (searchForCategory && searchForCategory.length > 0) {
+            matchesCategory = item.category.toLowerCase() === searchForCategory;
+        }
+
+        // Filter für den Preis
+        if (searchForPrice > 0) {
+            matchesPrice = item.price <= searchForPrice;
+        }
+
+        // Artikel hinzufügen, wenn alle Kriterien erfüllt sind
+        if (matchesName && matchesCategory && matchesPrice) {
+            shownItems.push(item);
         }
     });
-
-    console.log("not shown items  " +  notShownItems);
-    console.log(shopData.ITEMS.filter(item => !notShownItems.includes(item.name)))
 
     console.log(shownItems);
     localStorage.setItem("ITEMS_SHOWN", JSON.stringify(shownItems));
