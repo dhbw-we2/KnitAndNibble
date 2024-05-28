@@ -19,7 +19,7 @@ function zumWarenkorb(item_name) {
 }
 
 function getItem(item_name)  {
-    return SHOP_ITEM.find(({ name }) => name === item_name)
+    return SHOP_DATA.ITEMS.find(({ name }) => name === item_name)
 }
 
 function findInList(warenkorb, item_name)   {
