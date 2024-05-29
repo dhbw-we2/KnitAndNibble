@@ -42,7 +42,7 @@
 <!--Navigation bar-->
 <div>
     <script type="text/x-handlebars-template">
-        {{>partials/bar}}
+        {{>partials/bar }}
     </script>
 </div>
 
@@ -75,7 +75,7 @@
                 </thead>
                 <tbody>
                     <script type="text/x-handlebars-template">
-                        {{>partials/cart_item}}
+                        {{>partials/cart_item }}
                     </script>
                 </tbody>
             </table>
@@ -121,7 +121,7 @@
 <!--Footer-->
 <div>
     <script type="text/x-handlebars-template">
-        {{>partials/footer}}
+        {{>partials/footer }}
     </script>
 </div>
 <!--end of Footer-->
@@ -139,7 +139,8 @@
 
 <script>
     function init() {
-        let items = JSON.parse(localStorage.getItem("Warenkorb"))
+        let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
+        let items = warenkorb.items
         items = get_totals(items)
         render(items)
         update_total("subtotal_cart", "total_cart")
