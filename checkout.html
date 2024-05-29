@@ -33,6 +33,7 @@
     <script src="js/daten.js"></script>
     <script src="js/vanilla.js"></script>
     <script src="js/cart.js"></script>
+    <script src="js/checkout.js"></script>
 </head>
 
 <body onload = "init()">
@@ -209,51 +210,6 @@
         render(items)
         calculate_total()
     }
-
-    function second_address(checked) {
-        var hiddenFormItems = document.querySelectorAll('[data-diff-shipping-address]');
-
-        if (checked) {
-            hiddenFormItems.forEach(function (item) {
-                item.removeAttribute('hidden');
-                item.setAttribute('required', '');
-            })
-        } else {
-            hiddenFormItems.forEach(function (item) {
-                item.setAttribute('hidden', '');
-                item.removeAttribute('required');
-            })
-        }
-    }
-
-    function order() {
-
-        const form = document.querySelector('.needs-validation');
-
-        if (form.checkValidity()) {
-            placeOrder();
-        }
-        form.classList.add('was-validated');
-    }
-
-    function placeOrder() {
-            console.log("only for testing purposes right now")
-        }
-
-    function calculate_total()  {
-        let shipping_cost = 3
-        let free_shipping = 50
-
-        update_total("checkout_subTotal", "checkout_total")
-        let subtotal = parseFloat(document.getElementById("checkout_subTotal").innerHTML)
-
-        if(subtotal > free_shipping) {
-            document.getElementById("shipping_cost").innerHTML = 0 + "€"
-        } else {
-            document.getElementById("shipping_cost").innerHTML = shipping_cost + "€"
-        }
-    }
-
 </script>
 
 <!-- JavaScript Libraries -->
