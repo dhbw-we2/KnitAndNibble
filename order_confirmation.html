@@ -51,49 +51,72 @@
 <div class="container-fluid py-5">
     <div class="container py-5">
         <h1 class="mb-4">Order Details</h1>
-
-        <script type="text/x-handlebars-template">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Product</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Subtotal</th>
-                    </tr>
-                    </thead>
-                    {{#last_order.items}}
+        <div class="row g-5">
+            <script type="text/x-handlebars-template">
+                <div class="table-responsive col-md-12 col-lg-6 col-xl-7">
+                    <table class="table">
+                        <thead>
                         <tr>
-                            <th scope="row">
-                                <div class="d-flex align-items-center">
-                                    <img src="{{image}}" class="img-fluid me-5 rounded"
-                                         style="width: 80px; height: 80px;" alt="">
-                                </div>
-                            </th>
-                            <td>
-                                <p class="mb-0 mt-4" >{{name}}</p>
-                            </td>
-                            <td>
-                                <p class="mb-0 mt-4">{{price}}€</p>
-                            </td>
-                            <td>
-                                <p class="mb-0 mt-4">{{amount}}</p>
-                            </td>
-                            <td>
-                                <p class="mb-0 mt-4">{{total}}€</p>
-                            </td>
+                            <th scope="col">Product</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Subtotal</th>
                         </tr>
-                    {{/last_order.items}}
-                </table>
-                <h5>Subtotal: {{last_order.subTotal}}</h5>
-                <h5>Shipping cost: {{last_order.shipping}}</h5>
-                <h5>Total: {{last_order.total}}</h5>
+                        </thead>
+                        {{#items}}
+                            <tr>
+                                <th scope="row">
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{image}}" class="img-fluid me-5 rounded"
+                                             style="width: 80px; height: 80px;" alt="">
+                                    </div>
+                                </th>
+                                <td>
+                                    <p class="mb-0 mt-4" >{{name}}</p>
+                                </td>
+                                <td>
+                                    <p class="mb-0 mt-4">{{price}}€</p>
+                                </td>
+                                <td>
+                                    <p class="mb-0 mt-4">{{amount}}</p>
+                                </td>
+                                <td>
+                                    <p class="mb-0 mt-4">{{total}}€</p>
+                                </td>
+                            </tr>
+                        {{/items}}
+                    </table>
+                    <h5>Subtotal: {{subTotal}}</h5>
+                    <h5>Shipping cost: {{shipping}}</h5>
+                    <h5>Total: {{total}}</h5>
 
-            </div>
-
-        </script>
+                </div>
+                <div class="col-md-12 col-lg-6 col-xl-5">
+                    <h5>Personal information:</h5>
+                    <p>Name: {{pers_info.first_name}} {{pers_info.last_name}}</p>
+                    <p>Address: {{pers_info.address}}</p>
+                    <p>City/Town: {{pers_info.postal_code}} {{pers_info.town}}</p>
+                    <p>Mobile number: {{pers_info.mobile}}</p>
+                    <p>Email: {{pers_info.email}}</p>
+                    <p>Shipping Address: {{#if pers_info.shipping_address}}{{pers_info.shipping_address}}{{else}}{{pers_info.address}}{{/if}}</p>
+                    <p>Shipping City/Town: {{#if pers_info.shipping_postal_code}}{{pers_info.shipping_postal_code}} {{pers_info.town_shipping}}{{else}}{{pers_info.postal_code}} {{pers_info.town}}{{/if}}</p>
+                    <p>Notes: {{#if pers_info.order_notes}}{{pers_info.order_notes}}{{else}}-{{/if}}</p>
+                </div>
+            </script>
+        </div>
+        <div class="pt-3">
+            <a href="shop.html">
+                <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
+                        type="button">Continue Shopping
+                </button>
+            </a>
+            <a href="order_history.html">
+                <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
+                        type="button">Go to order history
+                </button>
+            </a>
+        </div>
     </div>
 </div>
 
@@ -110,7 +133,11 @@
         let order_history = JSON.parse(localStorage.getItem("Order_history"))
         let last_order = order_history.orders[order_history.orders.length-1]
         render({
-            last_order
+            items: last_order.items,
+            pers_info: last_order.personal_info,
+            subTotal: last_order.subTotal,
+            shipping: last_order.shipping,
+            total: last_order.total
         })
     }
 </script>

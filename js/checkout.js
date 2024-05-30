@@ -1,5 +1,5 @@
 function second_address(checked) {
-    var hiddenFormItems = document.querySelectorAll('[data-diff-shipping-address]');
+    let hiddenFormItems = document.querySelectorAll('[data-diff-shipping-address]');
 
     if (checked) {
         hiddenFormItems.forEach(function (item) {
@@ -27,19 +27,43 @@ function order() {
 function placeOrder() {
     let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
     let items = warenkorb.items
-
     let order_history = JSON.parse(localStorage.getItem('Order_history'))
+
     if (order_history == null){
         order_history = {}
         order_history.orders = []
     }
 
-    let session_orders = JSON.parse(sessionStorage.getItem('Session_orders'))
-    if (session_orders == null){
-        session_orders = {}
-        session_orders.orders = []
-    }
+    save_cart_information(items, order_history)
+    let new_order_index = order_history.orders.length-1
+    save_personal_information(order_history.orders[new_order_index])
 
+    localStorage.setItem("Order_history", JSON.stringify(order_history))
+    localStorage.removeItem("Warenkorb")
+
+    window.location.href = "order_confirmation.html"
+}
+
+function save_personal_information(order) {
+    order.personal_info = {}
+    order.personal_info.first_name = document.getElementById('first-name').value
+    order.personal_info.last_name = document.getElementById('last-name').value
+    order.personal_info.address = document.getElementById('address').value
+    order.personal_info.postal_code = document.getElementById('postal-code').value
+    order.personal_info.town = document.getElementById('town').value
+    order.personal_info.mobile = document.getElementById('mobile').value
+    order.personal_info.email = document.getElementById('email').value
+    if(!document.getElementById('shipping_address').hasAttribute('hidden'))  {
+        order.personal_info.shipping_address = document.getElementById('shipping_address').value
+        order.personal_info.shipping_postal_code = document.getElementById('shipping_zip_code').value
+        order.personal_info.town_shipping = document.getElementById('town_shipping').value
+    }
+    if(document.getElementById('order_notes').value !== null)  {
+        order.personal_info.order_notes = document.getElementById('order_notes').value
+    }
+}
+
+function save_cart_information(items, order_history) {
     let order = {}
 
     let subTotal = document.getElementById("checkout_subTotal").innerHTML
@@ -59,13 +83,11 @@ function placeOrder() {
 
     order_history.orders.push(order)
 
-    localStorage.setItem("Order_history", JSON.stringify(order_history))
-    localStorage.removeItem("Warenkorb")
-
-    session_orders.orders.push(order)
-    sessionStorage.setItem("Session_orders", JSON.stringify(session_orders))
-
-    window.location.href = "order_confirmation.html"
+    let index_recent_orders = JSON.parse(sessionStorage.getItem('index_recent_orders'))
+    if (index_recent_orders == null){
+        index_recent_orders = order_history.orders.length-1
+        sessionStorage.setItem("index_recent_orders", JSON.stringify(index_recent_orders))
+    }
 }
 
 function calculate_total() {
