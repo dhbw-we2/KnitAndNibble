@@ -4,8 +4,10 @@ function zumWarenkorb(item_name) {
         warenkorb = {}
         warenkorb.items = []
         warenkorb.num_of_items = 0
+        warenkorb.subTotal = 0
+        warenkorb.total = 0
     }
-
+    console.log("t")
     let item = getItem(item_name)
     let index = findInList(warenkorb.items, item_name)
 
@@ -21,8 +23,10 @@ function zumWarenkorb(item_name) {
     }
 
     warenkorb.num_of_items ++
-    document.getElementById("cart_symbol").innerHTML = warenkorb.num_of_items
+
     localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
+
+    calculate_cart_total()
     refresh_header()
 }
 

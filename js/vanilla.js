@@ -46,9 +46,6 @@ const render = async (data, querySelector) => {
         }
         // insert refreshed HTML elements
         target.insertAdjacentHTML('beforeend', template(data))
-        if (source.textContent.includes("partials/bar")) {
-            document.getElementById("cart_symbol").innerHTML = get_item_count()
-        }
     }
 }
 
@@ -66,15 +63,4 @@ async function loadPartials(code) {
             Handlebars.registerPartial(name, partialCode)
         }
     }
-}
-
-
-function get_item_count() {
-    if (localStorage.getItem("Warenkorb") !== null) {
-        let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
-        return warenkorb.num_of_items
-    } else {
-        return 0
-    }
-
 }

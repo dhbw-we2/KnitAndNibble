@@ -1,83 +1,61 @@
 // Product Quantity
 function quantityButton(name, operation, btn) {
     let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
-    let index = findInList(warenkorb.items, name) //unsure, whether its bad style to use a method from a different file?
+    let index = findInList(warenkorb.items, name)
 
     if(operation === "plus")    {
-        update_quantity(name, ++warenkorb.items[index].amount, btn.parentElement.previousElementSibling)
+        update_quantity(name, ++warenkorb.items[index].amount)
     } else if(operation === "minus")    {
-        update_quantity(name, --warenkorb.items[index].amount, btn.parentElement.nextElementSibling)
+        update_quantity(name, --warenkorb.items[index].amount)
     }
 }
 
-function update_quantity(name, amount_text, textField)  {
+function update_quantity(name, amount_text)  {
     let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
-    let index = findInList(warenkorb.items, name) //unsure, whether its bad style to use a method from a different file?
+    let index = findInList(warenkorb.items, name)
     let amount = parseInt(amount_text)
 
-    if(!Number.isInteger(amount) || amount < 1) {
-        textField.value = warenkorb.items[index].amount
-    } else {
+    if(Number.isInteger(amount) || amount > 0) {
         let old_amount = warenkorb.items[index].amount
-        textField.value = amount
         warenkorb.items[index].amount = amount
-        warenkorb.items[index].total = warenkorb.items[index].amount * warenkorb.items[index].price
+        warenkorb.items[index].total = parseFloat(warenkorb.items[index].amount * warenkorb.items[index].price).toFixed(2)
         let amount_diff = amount - old_amount
         warenkorb.num_of_items += amount_diff
-        item_total(warenkorb.items[index], textField.parentElement.parentElement.nextElementSibling.firstElementChild) //There definitely is a better way to navigate through these elements
     }
     localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
-    document.getElementById("cart_symbol").innerHTML = warenkorb.num_of_items
-    update_total("subtotal_cart", "total_cart")
+
+    calculate_cart_total()
+
+    refresh()
 }
 
-function item_total(element, textField) {
-    textField.textContent = parseFloat(element.price * element.amount).toFixed(2) + '€' //parseFloat is necessary because of rounding errors
-}
-
-function update_total(idSubTotal, idTotal) {
-    let subTotal = getSubTotal()
-
-    document.getElementById(idSubTotal).innerHTML = subTotal + "€"
-    let total = getTotal(subTotal)
-    document.getElementById(idTotal).innerHTML = total + "€"
-}
-
-function getSubTotal() {
-    let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
-    let total = 0
-
-    for(let i in warenkorb.items) {
-        total += warenkorb.items[i].price * warenkorb.items[i].amount
-    }
-    return parseFloat(total).toFixed(2)
-}
-
-function getTotal(total) {
-    let shipping_cost = 3
-    let free_shipping = 50
-
-    if(total <= free_shipping) {
-        total = (parseFloat(total) + shipping_cost).toFixed(2)
-    }
-    return total
-}
-
-function discard(name, btn) {
+function discard(name) {
     let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
     let index = findInList(warenkorb.items, name)
     let old_amount = warenkorb.items[index].amount
 
-    let rowIndex = btn.parentElement.parentElement.rowIndex
-    //delete the item from the cart page
-    document.getElementById("cart_table").deleteRow(rowIndex)
-    //delete the item in the local Storage
     warenkorb.items.splice(index, 1)
     //recalculate total item count
     warenkorb.num_of_items -= old_amount
     localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
-    //recalculate the total in the cart page
-    update_total("subtotal_cart", "total_cart")
-    //update the cart symbol in the navbar
-    document.getElementById("cart_symbol").innerHTML = warenkorb.num_of_items
+    calculate_cart_total()
+    refresh()
+}
+
+function calculate_cart_total() {
+    let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
+    let shipping_cost = 3.00
+    warenkorb.subTotal = 0
+
+    for(let i in warenkorb.items)   {
+        warenkorb.subTotal += warenkorb.items[i].price * warenkorb.items[i].amount
+    }
+    warenkorb.total = (warenkorb.subTotal > 50) ? warenkorb.total = warenkorb.subTotal : warenkorb.total = parseFloat(warenkorb.subTotal + shipping_cost).toFixed(2)
+    warenkorb.subTotal = parseFloat(warenkorb.subTotal).toFixed(2)
+    localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
+}
+
+function refresh()  {
+    let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
+    render(warenkorb, '#cart-body')
 }
