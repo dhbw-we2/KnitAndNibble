@@ -85,7 +85,7 @@ function save_cart_information(items, order_history) {
     order_history.orders.push(order)
 
     let index_recent_orders = JSON.parse(sessionStorage.getItem('index_recent_orders'))
-    if (index_recent_orders == null){
+    if (index_recent_orders === null){
         index_recent_orders = order_history.orders.length-1
         sessionStorage.setItem("index_recent_orders", JSON.stringify(index_recent_orders))
     }

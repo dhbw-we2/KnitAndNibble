@@ -27,7 +27,6 @@ const $on = (element, event, func) => {
  * @returns {Promise<void>}
  */
 const render = async (data, querySelector) => {
-
     Handlebars.registerHelper('toFixed', function (num) {
         return num && num.toFixed(2);
     });
@@ -37,16 +36,17 @@ const render = async (data, querySelector) => {
         await loadPartials(source)
         const template = Handlebars.compile(source.innerHTML)
         const target = source.parentElement
-
         // remove former HTML elements
-        /**
-         if (target.children.length > 1) {
-         const start = querySelector ? 0 : 1
-         for (let i = start; i < target.children.length; i++) {
-         target.lastElementChild.remove()
-         }
-         }*/
+        if (target.children.length > 1) {
+            const start = querySelector ? 0 : 1
+            let children = target.children.length
+            for (let i = start; i < children; i++) {
+                target.lastElementChild.remove()
+            }
+        }
         // insert refreshed HTML elements
+        console.log(data)
+        console.log(template(data))
         target.insertAdjacentHTML('beforeend', template(data))
         if (source.textContent.includes("partials/bar")) {
             document.getElementById("cart_symbol").innerHTML = get_item_count()

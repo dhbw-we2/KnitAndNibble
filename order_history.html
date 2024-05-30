@@ -51,80 +51,85 @@
         <h1 class="mb-4">Order History</h1>
         <div class="row g-5">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="btnradio" id="show_all_orders" autocomplete="off" checked onchange="show_all_orders()">
+                <input type="radio" class="btn-check" name="btnradio" id="show_all_orders" autocomplete="off" checked
+                       onchange="show_all_orders()">
                 <label class="btn btn-outline-primary" for="show_all_orders">Show all orders</label>
 
-                <input type="radio" class="btn-check" name="btnradio" id="show_recent_orders" autocomplete="off" onchange="show_recent_orders()">
+                <input type="radio" class="btn-check" name="btnradio" id="show_recent_orders" autocomplete="off"
+                       onchange="show_recent_orders()">
                 <label class="btn btn-outline-primary" for="show_recent_orders">Show recent orders</label>
             </div>
 
-            <script type="text/x-handlebars-template">
-                {{#orders}}
-                    <h5>Order number {{number}}</h5>
-                    <div class="table-responsive col-md-12 col-lg-6 col-xl-7">
-                        <p>Bought on {{date}} at {{time}}</p>
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">Product</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Subtotal</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {{#items}}
+            <div class="order-list">
+                <script id="order-list" type="text/x-handlebars-template">
+                    {{#orders}}
+                        <h5>Order number {{number}}</h5>
+                        <div class="table-responsive col-md-12 col-lg-6 col-xl-7">
+                            <p>Bought on {{date}} at {{time}}</p>
+                            <table class="table">
+                                <thead>
                                 <tr>
-                                    <th scope="row">
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{image}}" class="img-fluid me-5 rounded"
-                                                 style="width: 80px; height: 80px;" alt="">
-                                        </div>
-                                    </th>
-                                    <td>
-                                        <p class="mb-0 mt-4" >{{name}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="mb-0 mt-4">{{price}}€</p>
-                                    </td>
-                                    <td>
-                                        <p class="mb-0 mt-4">{{amount}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="mb-0 mt-4">{{total}}€</p>
-                                    </td>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Subtotal</th>
                                 </tr>
-                            {{/items}}
-                            </tbody>
-                            <tr>
-                                <td>Subtotal:</td>
-                                <td colspan="4">{{subTotal}}</td>
-                            </tr>
-                            <tr>
-                                <td>Shipping Cost:</td>
-                                <td colspan="4">{{shipping}}</td>
-                            </tr>
-                            <tr>
-                                <td>Total:</td>
-                                <td colspan="4">{{total}}</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-md-12 col-lg-6 col-xl-5">
-                        <h5>Shipping information:</h5>
-                        <p>Name: {{personal_info.first_name}} {{personal_info.last_name}}</p>
-                        <p>Address: {{personal_info.address}}</p>
-                        <p>City/Town: {{personal_info.postal_code}} {{personal_info.town}}</p>
-                        <p>Mobile number: {{personal_info.mobile}}</p>
-                        <p>Email: {{personal_info.email}}</p>
-                        <p>Shipping Address: {{#if personal_info.shipping_address}}{{personal_info.shipping_address}}{{else}}{{personal_info.address}}{{/if}}</p>
-                        <p>Shipping City/Town: {{#if personal_info.shipping_postal_code}}{{personal_info.shipping_postal_code}} {{personal_info.town_shipping}}{{else}}{{personal_info.postal_code}} {{pers_info.town}}{{/if}}</p>
-                        <p>Notes: {{#if personal_info.order_notes}}{{personal_info.order_notes}}{{else}}-{{/if}}</p>
-                    </div>
-                {{/orders}}
-
-            </script>
+                                </thead>
+                                <tbody>
+                                {{#items}}
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{image}}" class="img-fluid me-5 rounded"
+                                                     style="width: 80px; height: 80px;" alt="">
+                                            </div>
+                                        </th>
+                                        <td>
+                                            <p class="mb-0 mt-4">{{name}}</p>
+                                        </td>
+                                        <td>
+                                            <p class="mb-0 mt-4">{{price}}€</p>
+                                        </td>
+                                        <td>
+                                            <p class="mb-0 mt-4">{{amount}}</p>
+                                        </td>
+                                        <td>
+                                            <p class="mb-0 mt-4">{{total}}€</p>
+                                        </td>
+                                    </tr>
+                                {{/items}}
+                                </tbody>
+                                <tr>
+                                    <td>Subtotal:</td>
+                                    <td colspan="4">{{subTotal}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Shipping Cost:</td>
+                                    <td colspan="4">{{shipping}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Total:</td>
+                                    <td colspan="4">{{total}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-12 col-lg-6 col-xl-5">
+                            <h5>Shipping information:</h5>
+                            <p>Name: {{personal_info.first_name}} {{personal_info.last_name}}</p>
+                            <p>Address: {{personal_info.address}}</p>
+                            <p>City/Town: {{personal_info.postal_code}} {{personal_info.town}}</p>
+                            <p>Mobile number: {{personal_info.mobile}}</p>
+                            <p>Email: {{personal_info.email}}</p>
+                            <p>Shipping Address: {{#if
+                                    personal_info.shipping_address}}{{personal_info.shipping_address}}{{else}}{{personal_info.address}}{{/if}}</p>
+                            <p>Shipping City/Town: {{#if
+                                    personal_info.shipping_postal_code}}{{personal_info.shipping_postal_code}} {{personal_info.town_shipping}}{{else}}{{personal_info.postal_code}} {{pers_info.town}}{{/if}}</p>
+                            <p>Notes: {{#if personal_info.order_notes}}{{personal_info.order_notes}}{{else}}-{{/if}}</p>
+                        </div>
+                    {{/orders}}
+                </script>
+            </div>
         </div>
     </div>
 </div>
