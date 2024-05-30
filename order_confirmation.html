@@ -62,7 +62,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            {{#items}}
+                            {{#items_last_order}}
                                 <tr>
                                     <th scope="row">
                                         <div class="d-flex align-items-center">
@@ -83,7 +83,7 @@
                                         <p class="mb-0 mt-4">{{total}}€</p>
                                     </td>
                                 </tr>
-                            {{/items}}
+                            {{/items_last_order}}
                         </tbody>
                         <tr>
                             <td>Subtotal:</td>
@@ -142,7 +142,7 @@
         let order_history = JSON.parse(localStorage.getItem("Order_history"))
         let last_order = order_history.orders[order_history.orders.length-1]
         render({
-            items: last_order.items,
+            items_last_order: last_order.items,
             pers_info: last_order.personal_info,
             subTotal: last_order.subTotal,
             shipping: last_order.shipping,

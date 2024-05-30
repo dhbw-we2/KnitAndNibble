@@ -363,9 +363,17 @@
 <script>
     function init() {
         localStorage.setItem("ITEMS_SHOWN", JSON.stringify(SHOP_DATA));
+        let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
         // SHOP_DATA[0] = SHOP_DATA.ITEMS
         // Funktioniert grad alles noch nicht so richtig
-        render({shop_data: SHOP_DATA})
+        if(warenkorb !== null)    {
+            render({
+                shop_data: SHOP_DATA,
+                items: warenkorb.items
+            })
+        } else {
+            render({shop_data: SHOP_DATA})
+        }
     }
 </script>
 

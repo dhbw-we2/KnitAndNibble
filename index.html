@@ -34,7 +34,7 @@
     <script src="js/vanilla.js"></script>
 </head>
 
-<body onload = "render()">
+<body onload = "init()">
 
 <!--Navigation bar-->
 <div>
@@ -1200,6 +1200,12 @@
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
+<script>
+    function init() {
+        let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
+        render({items: warenkorb.items})
+    }
+</script>
 </body>
 
 </html>

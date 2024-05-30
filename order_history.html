@@ -146,7 +146,11 @@
 <script>
     function init() {
         let order_history = JSON.parse(localStorage.getItem("Order_history"))
-        render(order_history)
+        let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
+        render({
+            orders: order_history.orders,
+            items: warenkorb.items
+        })
     }
 </script>
 

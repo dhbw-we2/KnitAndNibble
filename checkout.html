@@ -205,7 +205,7 @@
         let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
         let items = warenkorb.items
         items = get_totals(items)
-        render(items)
+        render({items: items})
         calculate_total()
     }
 </script>
