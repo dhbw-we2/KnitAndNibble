@@ -26,15 +26,18 @@ function order() {
 
 function placeOrder() {
     let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
+    let items = warenkorb.items
 
     let order_history = JSON.parse(localStorage.getItem('Order_history'))
     if (order_history == null){
-        order_history = []
+        order_history = {}
+        order_history.orders = []
     }
 
     let session_orders = JSON.parse(sessionStorage.getItem('Session_orders'))
     if (session_orders == null){
-        session_orders = []
+        session_orders = {}
+        session_orders.orders = []
     }
 
     let order = {}
@@ -43,7 +46,8 @@ function placeOrder() {
     let shipping = document.getElementById("shipping_cost").innerHTML
     let total = document.getElementById("checkout_total").innerHTML
 
-    order.items = warenkorb
+    items = calculate_total_per_item(items)
+    order.items = items
 
     order.total =[]
     order.total.push(subTotal)
@@ -54,12 +58,12 @@ function placeOrder() {
     order.date = dateTime.toLocaleDateString()
     order.time = dateTime.toLocaleTimeString()
 
-    order_history.push(order)
+    order_history.orders.push(order)
 
     localStorage.setItem("Order_history", JSON.stringify(order_history))
     localStorage.removeItem("Warenkorb")
 
-    session_orders.push(order)
+    session_orders.orders.push(order)
     sessionStorage.setItem("Session_orders", JSON.stringify(session_orders))
 
     window.location.href = "order_confirmation.html"
@@ -77,4 +81,8 @@ function calculate_total() {
     } else {
         document.getElementById("shipping_cost").innerHTML = shipping_cost + "€"
     }
+}
+
+function calculate_total_per_item(items) {
+    return items
 }
