@@ -21,6 +21,7 @@ function update_quantity(name, amount_text, textField)  {
         let old_amount = warenkorb.items[index].amount
         textField.value = amount
         warenkorb.items[index].amount = amount
+        warenkorb.items[index].total = warenkorb.items[index].amount * warenkorb.items[index].price
         let amount_diff = amount - old_amount
         warenkorb.num_of_items += amount_diff
         item_total(warenkorb.items[index], textField.parentElement.parentElement.nextElementSibling.firstElementChild) //There definitely is a better way to navigate through these elements
@@ -60,14 +61,6 @@ function getTotal(total) {
         total = (parseFloat(total) + shipping_cost).toFixed(2)
     }
     return total
-}
-
-function get_totals(items)  {
-    for(let i in items)  {
-        items[i].total = items[i].price * items[i].amount
-        items[i].total = parseFloat(items[i].total).toFixed(2) //necessary because of rounding errors
-    }
-    return items
 }
 
 function discard(name, btn) {

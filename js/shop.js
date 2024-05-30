@@ -11,16 +11,19 @@ function zumWarenkorb(item_name) {
 
     if (index !== -1){
         warenkorb.items[index].amount ++
+        warenkorb.items[index].total = parseFloat(warenkorb.items[index].price * warenkorb.items[index].amount).toFixed(2)
     } else {
         item.amount = 1
         //every item now shows price with two digits after the decimal point
         item.price = parseFloat(item.price).toFixed(2)
         warenkorb.items.push(item)
+        item.total = parseFloat(item.price).toFixed(2)
     }
 
     warenkorb.num_of_items ++
     document.getElementById("cart_symbol").innerHTML = warenkorb.num_of_items
     localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
+    refresh_header()
 }
 
 function getItem(item_name)  {
