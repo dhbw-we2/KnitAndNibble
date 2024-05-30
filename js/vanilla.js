@@ -27,6 +27,7 @@ const $on = (element, event, func) => {
  * @returns {Promise<void>}
  */
 const render = async (data, querySelector) => {
+    console.log(data)
     Handlebars.registerHelper('toFixed', function (num) {
         return num && num.toFixed(2);
     });

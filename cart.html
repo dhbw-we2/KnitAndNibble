@@ -127,6 +127,7 @@
 <!--end of Footer-->
 
 <!-- Template Javascript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="js/main.js"></script>
 
 <script>
@@ -134,7 +135,7 @@
         let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
         let items = warenkorb.items
         items = get_totals(items)
-        render(items)
+        render(warenkorb)
         update_total("subtotal_cart", "total_cart")
     }
 </script>
