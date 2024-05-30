@@ -13,6 +13,8 @@ function zumWarenkorb(item_name) {
         warenkorb.items[index].amount ++
     } else {
         item.amount = 1
+        //every item now shows price with two digits after the decimal point
+        item.price = parseFloat(item.price).toFixed(2)
         warenkorb.items.push(item)
     }
 

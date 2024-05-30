@@ -49,10 +49,9 @@ function placeOrder() {
     items = calculate_total_per_item(items)
     order.items = items
 
-    order.total =[]
-    order.total.push(subTotal)
-    order.total.push(shipping)
-    order.total.push(total)
+    order.subTotal = subTotal
+    order.shipping = shipping
+    order.total = total
 
     let dateTime = new Date()
     order.date = dateTime.toLocaleDateString()
@@ -77,12 +76,15 @@ function calculate_total() {
     let subtotal = parseFloat(document.getElementById("checkout_subTotal").innerHTML)
 
     if (subtotal > free_shipping) {
-        document.getElementById("shipping_cost").innerHTML = 0 + "€"
+        document.getElementById("shipping_cost").innerHTML = 0.00 + "€"
     } else {
-        document.getElementById("shipping_cost").innerHTML = shipping_cost + "€"
+        document.getElementById("shipping_cost").innerHTML = parseFloat(shipping_cost).toFixed(2) + "€"
     }
 }
 
 function calculate_total_per_item(items) {
+    for(let i in items) {
+        items[i].total = parseFloat(items[i].price * items[i].amount).toFixed(2)
+    }
     return items
 }
