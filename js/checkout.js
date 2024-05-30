@@ -72,6 +72,7 @@ function save_cart_information(items, order_history) {
 
     items = calculate_total_per_item(items)
     order.items = items
+    order.number = order_history.orders.length+1
 
     order.subTotal = subTotal
     order.shipping = shipping

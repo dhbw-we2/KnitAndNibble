@@ -32,6 +32,7 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/handlebars.min-v4.7.8.js"></script>
     <script src="js/vanilla.js"></script>
+    <script src="js/order_history.js"></script>
 </head>
 
 <body onload="init()">
@@ -44,24 +45,35 @@
 </div>
 <!--end of Navigation bar-->
 
-<!-- Order confirmation Page Start -->
+<!-- Order history Page Start -->
 <div class="container-fluid py-5">
     <div class="container py-5">
-        <h1 class="mb-4">Order Details</h1>
+        <h1 class="mb-4">Order History</h1>
         <div class="row g-5">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="show_all_orders" autocomplete="off" checked onchange="show_all_orders()">
+                <label class="btn btn-outline-primary" for="show_all_orders">Show all orders</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="show_recent_orders" autocomplete="off" onchange="show_recent_orders()">
+                <label class="btn btn-outline-primary" for="show_recent_orders">Show recent orders</label>
+            </div>
+
             <script type="text/x-handlebars-template">
-                <div class="table-responsive col-md-12 col-lg-6 col-xl-7">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">Product</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Subtotal</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                {{#orders}}
+                    <h5>Order number {{number}}</h5>
+                    <div class="table-responsive col-md-12 col-lg-6 col-xl-7">
+                        <p>Bought on {{date}} at {{time}}</p>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Subtotal</th>
+                            </tr>
+                            </thead>
+                            <tbody>
                             {{#items}}
                                 <tr>
                                     <th scope="row">
@@ -84,50 +96,39 @@
                                     </td>
                                 </tr>
                             {{/items}}
-                        </tbody>
-                        <tr>
-                            <td>Subtotal:</td>
-                            <td colspan="4">{{subTotal}}</td>
-                        </tr>
-                        <tr>
-                            <td>Shipping Cost:</td>
-                            <td colspan="4">{{shipping}}</td>
-                        </tr>
-                        <tr>
-                            <td>Total:</td>
-                            <td colspan="4">{{total}}</td>
-                        </tr>
-                    </table>
+                            </tbody>
+                            <tr>
+                                <td>Subtotal:</td>
+                                <td colspan="4">{{subTotal}}</td>
+                            </tr>
+                            <tr>
+                                <td>Shipping Cost:</td>
+                                <td colspan="4">{{shipping}}</td>
+                            </tr>
+                            <tr>
+                                <td>Total:</td>
+                                <td colspan="4">{{total}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-5">
+                        <h5>Shipping information:</h5>
+                        <p>Name: {{personal_info.first_name}} {{personal_info.last_name}}</p>
+                        <p>Address: {{personal_info.address}}</p>
+                        <p>City/Town: {{personal_info.postal_code}} {{personal_info.town}}</p>
+                        <p>Mobile number: {{personal_info.mobile}}</p>
+                        <p>Email: {{personal_info.email}}</p>
+                        <p>Shipping Address: {{#if personal_info.shipping_address}}{{personal_info.shipping_address}}{{else}}{{personal_info.address}}{{/if}}</p>
+                        <p>Shipping City/Town: {{#if personal_info.shipping_postal_code}}{{personal_info.shipping_postal_code}} {{personal_info.town_shipping}}{{else}}{{personal_info.postal_code}} {{pers_info.town}}{{/if}}</p>
+                        <p>Notes: {{#if personal_info.order_notes}}{{personal_info.order_notes}}{{else}}-{{/if}}</p>
+                    </div>
+                {{/orders}}
 
-                </div>
-                <div class="col-md-12 col-lg-6 col-xl-5">
-                    <h5>Personal information:</h5>
-                    <p>Name: {{pers_info.first_name}} {{pers_info.last_name}}</p>
-                    <p>Address: {{pers_info.address}}</p>
-                    <p>City/Town: {{pers_info.postal_code}} {{pers_info.town}}</p>
-                    <p>Mobile number: {{pers_info.mobile}}</p>
-                    <p>Email: {{pers_info.email}}</p>
-                    <p>Shipping Address: {{#if pers_info.shipping_address}}{{pers_info.shipping_address}}{{else}}{{pers_info.address}}{{/if}}</p>
-                    <p>Shipping City/Town: {{#if pers_info.shipping_postal_code}}{{pers_info.shipping_postal_code}} {{pers_info.town_shipping}}{{else}}{{pers_info.postal_code}} {{pers_info.town}}{{/if}}</p>
-                    <p>Notes: {{#if pers_info.order_notes}}{{pers_info.order_notes}}{{else}}-{{/if}}</p>
-                </div>
             </script>
-        </div>
-        <div class="pt-3">
-            <a href="shop.html">
-                <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
-                        type="button">Continue Shopping
-                </button>
-            </a>
-            <a href="order_history.html">
-                <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
-                        type="button">Go to order history
-                </button>
-            </a>
         </div>
     </div>
 </div>
-<!-- end of order confirmation page-->
+<!-- end of order history Page -->
 
 <!--Footer-->
 <div>
@@ -140,14 +141,7 @@
 <script>
     function init() {
         let order_history = JSON.parse(localStorage.getItem("Order_history"))
-        let last_order = order_history.orders[order_history.orders.length-1]
-        render({
-            items: last_order.items,
-            pers_info: last_order.personal_info,
-            subTotal: last_order.subTotal,
-            shipping: last_order.shipping,
-            total: last_order.total
-        })
+        render(order_history)
     }
 </script>
 
