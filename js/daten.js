@@ -90,6 +90,13 @@ SHOP_DATA = {
             image: "https://i1.wp.com/gina-michele.com/wp-content/uploads/2018/07/StayOnBabyBooties.jpg?fit=1024,1024&ssl=1",
             price: 5.00,
             category: "Wearables"
+        },
+        {
+            name: "Tasty chocolate cookies",
+            description: "extremely tasty and crispy",
+            image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.modernhoney.com%2Fwp-content%2Fuploads%2F2017%2F11%2FThin-and-Crispy-Chocolate-Chip-Cookies-2.jpg&f=1&nofb=1&ipt=2a9a9fb9fabab7a4f00be9cbb5427814f154cdff3c9fef97d19665dbc334c6a5&ipo=images",
+            price: 3,
+            category: "Cookies"
         }
     ],
     CATEGORIES: [

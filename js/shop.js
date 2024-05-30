@@ -59,6 +59,38 @@ function priceSearch() {
     startSearch()
 }
 
+/*
+
+
+ */
+function unsearch(){
+    const radioButtons = document.querySelectorAll('[name="flexRadioDefault"]');
+
+    radioButtons.forEach(button => {
+        button.checked = false
+    })
+    searchForPrice = 0
+    searchForCategory = undefined
+    searchForName = undefined
+
+    $('.search_input').value = null
+    $('#rangeInput').value = 0
+
+
+    startSearch()
+}
+
+/**
+ * Initiates the search process for items in the shop based on the provided search criteria.
+ * Filters items by name, category, and price, then updates the displayed items accordingly.
+ *
+ * @function startSearch
+ *
+ * @param {string} [searchForName] - The name or partial name to search for.
+ * @param {string} [searchForCategory] - The category to search for.
+ * @param {number} [searchForPrice] - The maximum price to search for.
+ *
+ */
 function startSearch() {
     let shownItems = JSON.parse(JSON.stringify(SHOP_DATA));
     shownItems.ITEMS = []
@@ -105,55 +137,4 @@ function startSearch() {
 
     //render new shop-items
     render({shop_data: shownItems}, '#shop-body')
-}
-
-function startSearchZwei() {
-    priceSearch();
-    searchbar();
-
-    let shopData = JSON.parse(JSON.stringify(SHOP_DATA));
-    console.log(JSON.parse(JSON.stringify(SHOP_DATA)));
-    let shownItems = JSON.parse(localStorage.getItem('ITEMS_SHOWN')); // Verhindert Fehler, wenn 'ITEMS_SHOWN' nicht existiert
-    let notShownItems = [];
-    shownItems.ITEMS = [];
-
-    localStorage.removeItem("ITEMS_SHOWN");
-
-    shopData.ITEMS.forEach(item => {
-        let matchesName = true;
-        let matchesCategory = true;
-        let matchesPrice = true;
-
-        // Filter für den Namen
-        if (searchForName && searchForName.length > 0) {
-            matchesName = item.name.toLowerCase().includes(searchForName);
-        }
-
-        // Filter für die Kategorie
-        if (searchForCategory && searchForCategory.length > 0) {
-            matchesCategory = item.category.toLowerCase() === searchForCategory;
-        }
-
-        // Filter für den Preis
-        if (searchForPrice > 0) {
-            matchesPrice = item.price <= searchForPrice;
-        }
-
-        // Artikel hinzufügen, wenn alle Kriterien erfüllt sind
-        if (matchesName && matchesCategory && matchesPrice) {
-            shownItems.push(item);
-        }
-    });
-
-    console.log(shownItems);
-    localStorage.setItem("ITEMS_SHOWN", JSON.stringify(shownItems));
-
-    //delete all shop-items
-    const items = document.querySelectorAll('.shop-partial');
-    items.forEach(item => {
-        item.remove();
-    });
-
-    //render new shop-items
-    render({ shop_data: shownItems });
 }
