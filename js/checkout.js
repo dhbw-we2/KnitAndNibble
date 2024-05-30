@@ -92,17 +92,15 @@ function save_cart_information(items, order_history) {
 }
 
 function calculate_total() {
+    let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
     let shipping_cost = 3
     let free_shipping = 50
-
-    update_total("checkout_subTotal", "checkout_total")
-    let subtotal = parseFloat(document.getElementById("checkout_subTotal").innerHTML)
-
-    if (subtotal > free_shipping) {
-        document.getElementById("shipping_cost").innerHTML = 0.00 + "€"
+    if (warenkorb.subTotal > free_shipping) {
+        warenkorb.shippingCost = 0
     } else {
-        document.getElementById("shipping_cost").innerHTML = parseFloat(shipping_cost).toFixed(2) + "€"
+        warenkorb.shippingCost = parseFloat(shipping_cost).toFixed(2) + "€"
     }
+    localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
 }
 
 function calculate_total_per_item(items) {

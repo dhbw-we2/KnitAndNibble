@@ -15,7 +15,7 @@ function update_quantity(name, amount_text)  {
     let index = findInList(warenkorb.items, name)
     let amount = parseInt(amount_text)
 
-    if(Number.isInteger(amount) || amount > 0) {
+    if(Number.isInteger(amount) && amount > 0) {
         let old_amount = warenkorb.items[index].amount
         warenkorb.items[index].amount = amount
         warenkorb.items[index].total = parseFloat(warenkorb.items[index].amount * warenkorb.items[index].price).toFixed(2)
@@ -27,6 +27,7 @@ function update_quantity(name, amount_text)  {
     calculate_cart_total()
 
     refresh()
+    refresh_header()
 }
 
 function discard(name) {
@@ -40,6 +41,7 @@ function discard(name) {
     localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
     calculate_cart_total()
     refresh()
+    refresh_header()
 }
 
 function calculate_cart_total() {
@@ -50,7 +52,7 @@ function calculate_cart_total() {
     for(let i in warenkorb.items)   {
         warenkorb.subTotal += warenkorb.items[i].price * warenkorb.items[i].amount
     }
-    warenkorb.total = (warenkorb.subTotal > 50) ? warenkorb.total = warenkorb.subTotal : warenkorb.total = parseFloat(warenkorb.subTotal + shipping_cost).toFixed(2)
+    warenkorb.total = (warenkorb.subTotal > 50) ? warenkorb.total = parseFloat(warenkorb.subTotal).toFixed(2) : warenkorb.total = parseFloat(warenkorb.subTotal + shipping_cost).toFixed(2)
     warenkorb.subTotal = parseFloat(warenkorb.subTotal).toFixed(2)
     localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
 }

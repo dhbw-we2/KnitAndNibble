@@ -11,7 +11,8 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap"
+          rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
@@ -34,7 +35,7 @@
     <script src="js/checkout.js"></script>
 </head>
 
-<body onload = "init()">
+<body onload="init()">
 
 <!--Navigation bar-->
 <div>
@@ -62,14 +63,16 @@
                         </div>
                         <div class="col-md-12 col-lg-6">
                             <div class="form-floating w-100 mb-3">
-                                <input type="text" class="form-control" id="last-name" placeholder="Mustermann" required>
+                                <input type="text" class="form-control" id="last-name" placeholder="Mustermann"
+                                       required>
                                 <label for="last-name">Last Name<sup>*</sup></label>
                                 <div class="invalid-feedback">Bitte geben Sie Ihren Nachnamen ein.</div>
                             </div>
                         </div>
                     </div>
                     <div class="form-floating w-100 mb-3">
-                        <input type="text" class="form-control" id="address" placeholder="House number, Street name" required>
+                        <input type="text" class="form-control" id="address" placeholder="House number, Street name"
+                               required>
                         <label for="address">Address<sup>*</sup></label>
                         <div class="invalid-feedback">Bitte geben Sie Ihre Adresse ein.</div>
                     </div>
@@ -100,89 +103,117 @@
                         <div class="invalid-feedback">Bitte geben Sie Ihre Email-Adresse ein.</div>
                     </div>
                     <div class="form-check my-3">
-                        <input class="form-check-input" type="checkbox" id="Address-1" name="Address" value="Address" onclick="second_address(this.checked)">
+                        <input class="form-check-input" type="checkbox" id="Address-1" name="Address" value="Address"
+                               onclick="second_address(this.checked)">
                         <label class="form-check-label" for="Address-1">Ship to a different address?</label>
                     </div>
 
                     <div class="form-floating w-100 mb-3">
-                        <input type="text" class="form-control" placeholder="House number, Street name" id="shipping_address" data-diff-shipping-address hidden>
+                        <input type="text" class="form-control" placeholder="House number, Street name"
+                               id="shipping_address" data-diff-shipping-address hidden>
                         <label for="shipping_address" data-diff-shipping-address hidden>Address<sup>*</sup> </label>
                         <div class="invalid-feedback">Bitte geben Sie Ihre Lieferadresse ein.</div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-lg-3">
                             <div class="form-floating w-100 mb-3">
-                                <input type="text" class="form-control" id="shipping_zip_code" placeholder="68167" data-diff-shipping-address hidden>
-                                <label for="shipping_zip_code" data-diff-shipping-address hidden="">Postal code<sup>*</sup></label>
-                                <div class="invalid-feedback">Bitte geben Sie die Postleitzahl der Lieferadresse ein.</div>
+                                <input type="text" class="form-control" id="shipping_zip_code" placeholder="68167"
+                                       data-diff-shipping-address hidden>
+                                <label for="shipping_zip_code" data-diff-shipping-address hidden="">Postal
+                                    code<sup>*</sup></label>
+                                <div class="invalid-feedback">Bitte geben Sie die Postleitzahl der Lieferadresse ein.
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-9">
                             <div class="form-floating w-100 mb-3">
-                                <input type="text" class="form-control" id="town_shipping" placeholder="Mannheim" data-diff-shipping-address hidden>
-                                <label for="town_shipping" data-diff-shipping-address hidden="">Town/City<sup>*</sup></label>
+                                <input type="text" class="form-control" id="town_shipping" placeholder="Mannheim"
+                                       data-diff-shipping-address hidden>
+                                <label for="town_shipping" data-diff-shipping-address
+                                       hidden="">Town/City<sup>*</sup></label>
                                 <div class="invalid-feedback">Bitte geben Sie den Ort ein.</div>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-item">
-                        <textarea name="text" class="form-control" spellcheck="false" cols="30" rows="11" id="order_notes" placeholder="Order Notes (Optional)"></textarea>
+                        <textarea name="text" class="form-control" spellcheck="false" cols="30" rows="11"
+                                  id="order_notes" placeholder="Order Notes (Optional)"></textarea>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-6 col-xl-5">
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">Products</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Total</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                    <script type="text/x-handlebars-template">
-                                        {{>partials/checkout_item }}
-                                   </script>
-                            </tbody>
-                            <tr>
-                                <td>Subtotal:</td>
-                                <td colspan="4" id = checkout_subTotal>Error</td>
-                            </tr>
-                            <tr>
-                                <td>Shipping Cost:</td>
-                                <td colspan="4" id = shipping_cost>Error</td>
-                            </tr>
-                            <tr>
-                                <td>Total:</td>
-                                <td colspan="4" id = checkout_total>Error</td>
-                            </tr>
+                        <script type="text/x-handlebars-template">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Products</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{#items}}
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="d-flex align-items-center mt-2">
+                                                <img src="{{image}}" class="img-fluid rounded-circle"
+                                                     style="width: 90px; height: 90px;" alt="">
+                                            </div>
+                                        </th>
+                                        <td class="py-5">{{name}}</td>
+                                        <td class="py-5">{{price}}€</td>
+                                        <td class="py-5">{{amount}}</td>
+                                        <td class="py-5">{{total}}€</td>
+                                    </tr>
+                                {{/items}}
+                                </tbody>
+                                <tr>
+                                    <td>Subtotal:</td>
+                                    <td colspan="4" id=checkout_subTotal>{{subTotal}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Shipping Cost:</td>
+                                    <td colspan="4" id=shipping_cost>{{shippingCost}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Total:</td>
+                                    <td colspan="4" id=checkout_total>{{total}}</td>
+                                </tr>
 
-                        </table>
-
+                            </table>
+                        </script>
                     </div>
-                    <div class ="form-check text-start my-3">
-                        <input class="form-check-input" type="radio" name="paymentOption" id="payment_option_1" required>
+                    <div class="form-check text-start my-3">
+                        <input class="form-check-input" type="radio" name="paymentOption" id="payment_option_1"
+                               required>
                         <label class="form-check-label" for="payment_option_1">
-                            <img src="img/payment_options/direct_bank_transfer.png" class="img-fluid" alt="Direct Bank Transfer" style="width:30%">
+                            <img src="img/payment_options/direct_bank_transfer.png" class="img-fluid"
+                                 alt="Direct Bank Transfer" style="width:30%">
                         </label>
                     </div>
-                    <div class ="form-check text-start my-3">
-                        <input class="form-check-input" type="radio" name="paymentOption" id="payment_option_2" required>
+                    <div class="form-check text-start my-3">
+                        <input class="form-check-input" type="radio" name="paymentOption" id="payment_option_2"
+                               required>
                         <label class="form-check-label" for="payment_option_2">
-                            <img src="img/payment_options/credit_card.png" class="img-fluid" alt="Credit Card" style="width:100%">
+                            <img src="img/payment_options/credit_card.png" class="img-fluid" alt="Credit Card"
+                                 style="width:100%">
                         </label>
                     </div>
-                    <div class ="form-check text-start my-3">
-                        <input class="form-check-input" type="radio" name="paymentOption" id="payment_option_3" required>
+                    <div class="form-check text-start my-3">
+                        <input class="form-check-input" type="radio" name="paymentOption" id="payment_option_3"
+                               required>
                         <label class="form-check-label" for="payment_option_3">
-                            <img src="img/payment_options/Paypal_logo.png" class="img-fluid" alt="PayPal" style="width:15%">
+                            <img src="img/payment_options/Paypal_logo.png" class="img-fluid" alt="PayPal"
+                                 style="width:15%">
                         </label>
                     </div>
                     <div class="row g-4 text-center align-items-center justify-content-center pt-4">
-                        <button type="button" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary" id="placeOrder" onclick="order()">Place Order</button>
+                        <button type="button" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary"
+                                id="placeOrder" onclick="order()">Place Order
+                        </button>
                     </div>
                 </div>
             </div>
@@ -202,10 +233,9 @@
 
 <script>
     function init() {
-        let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
-        let items = warenkorb.items
-        render({items: items})
         calculate_total()
+        let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
+        render(warenkorb)
     }
 </script>
 

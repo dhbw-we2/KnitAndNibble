@@ -1203,7 +1203,10 @@
 <script>
     function init() {
         let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
-        render({items: warenkorb.items})
+        render({
+            items: warenkorb.items,
+            num_of_items: warenkorb.num_of_items
+        })
     }
 </script>
 </body>

@@ -371,7 +371,8 @@
         if(warenkorb !== null)    {
             render({
                 shop_data: SHOP_DATA,
-                items: warenkorb.items
+                items: warenkorb.items,
+                num_of_items: warenkorb.num_of_items
             })
         } else {
             render({shop_data: SHOP_DATA})
