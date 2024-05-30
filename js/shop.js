@@ -97,7 +97,7 @@ function startSearch() {
     });
 
     //render new shop-items
-    render({shop_data: shownItems})
+    render({shop_data: shownItems}, '#shop-body')
 }
 
 function startSearchZwei() {
