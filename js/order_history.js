@@ -1,5 +1,6 @@
 function show_all_orders()  {
-    console.log("all")
+    let order_history = JSON.parse(localStorage.getItem("Order_history"))
+    render(order_history, '#order-list')
 }
 
 function show_recent_orders()   {
