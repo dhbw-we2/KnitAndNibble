@@ -1,14 +1,15 @@
 function zumWarenkorb(item_name) {
     let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
     if (warenkorb == null){
+        console.log("t")
         warenkorb = {}
         warenkorb.items = []
         warenkorb.num_of_items = 0
         warenkorb.subTotal = 0
         warenkorb.total = 0
     }
-    console.log("t")
     let item = getItem(item_name)
+    console.log(warenkorb.items)
     let index = findInList(warenkorb.items, item_name)
 
     if (index !== -1){
