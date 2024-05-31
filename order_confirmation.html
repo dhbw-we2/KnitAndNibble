@@ -141,12 +141,14 @@
     function init() {
         let order_history = JSON.parse(localStorage.getItem("Order_history"))
         let last_order = order_history.orders[order_history.orders.length-1]
+        let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
         render({
             items_last_order: last_order.items,
             pers_info: last_order.personal_info,
             subTotal: last_order.subTotal,
             shipping: last_order.shipping,
-            total: last_order.total
+            total: last_order.total,
+            items: warenkorb
         })
     }
 </script>
