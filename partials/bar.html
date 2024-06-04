@@ -17,11 +17,13 @@
     </div>
     <div class="container px-0">
         <nav class="navbar navbar-light bg-white navbar-expand-xl">
-            <img src="../img/WebsiteLogo.png" alt="Omas Image" style="width: auto; height: 90px; margin-right: 10px;">
-            <a href="../index.html" class="navbar-brand"><h1 class="text-primary display-6">OmasKnitAndNibble</h1></a>
-            <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars text-primary"></span>
-            </button>
+            <div class="d-flex align-items-center w-100">
+                <img src="../img/WebsiteLogo.png" alt="Omas Image" style="width: auto; height: 90px; margin-right: 10px;">
+                <a href="../index.html" class="navbar-brand flex-grow-1 mb-0 d-none d-sm-block"><h1 class="text-primary display-6 mb-0">OmasKnitAndNibble</h1></a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+            </div>
             <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
                     <a href="/TINF23IML1-WebProjekt/index.html" class="nav-item nav-link">Home</a>
@@ -33,20 +35,15 @@
                 <div class="d-flex m-3 me-0">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
-                            <a href="cart.html" class="dropdown-toggle" role="button" id="dropdownMenuLink"
-                               data-bs-toggle="dropdown" aria-expanded="false">
+                            <a href="cart.html" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-shopping-bag fa-2x"></i>
-                                <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-                                      style="top: -5px; left: 15px; height: 20px; min-width: 20px;" id="cart_symbol">{{num_of_items}}</span>
+                                <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;" id="cart_symbol">{{num_of_items}}</span>
                             </a>
-                            <div class="dropdown-menu animate slide dropdown-menu-end p-3 navbar-nav-scroll" style="max-height: 35vh; overflow-y: auto; right: 0; left: auto;"
-                                 data-bs-display="static" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                            <div class="dropdown-menu animate slide dropdown-menu-end p-3 navbar-nav-scroll" style="max-height: 35vh; overflow-y: auto; right: 0; left: auto;" data-bs-display="static" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                                 <ul class="list-group mb-3">
                                     {{#items}}
                                     <li class="list-group-item bg-transparent d-flex justify-content-between lh-sm">
-                                        <h5>
-                                            {{amount}} × {{name}}
-                                        </h5>
+                                        <h5>{{amount}} × {{name}}</h5>
                                         <h5 class="mx-lg-3">{{total}}€</h5>
                                     </li>
                                     {{/items}}
