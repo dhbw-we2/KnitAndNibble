@@ -39,7 +39,12 @@ function placeOrder() {
     save_personal_information(order_history.orders[new_order_index])
 
     localStorage.setItem("Order_history", JSON.stringify(order_history))
-    localStorage.removeItem("Warenkorb")
+    warenkorb = {}
+    warenkorb.items = []
+    warenkorb.num_of_items = 0
+    warenkorb.subTotal = 0
+    warenkorb.total = 0
+    localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
 
     window.location.href = "order_confirmation.html"
 }

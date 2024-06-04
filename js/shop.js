@@ -21,7 +21,6 @@ function init() {
 function zumWarenkorb(item_name) {
     let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
     if (warenkorb == null){
-        console.log("t")
         warenkorb = {}
         warenkorb.items = []
         warenkorb.num_of_items = 0
@@ -29,7 +28,6 @@ function zumWarenkorb(item_name) {
         warenkorb.total = 0
     }
     let item = getItem(item_name)
-    console.log(warenkorb.items)
     let index = findInList(warenkorb.items, item_name)
 
     if (index !== -1){
@@ -144,11 +142,6 @@ function startSearch() {
             shownItems.ITEMS.push(item);
         }
     });
-
-    console.log(searchForName)
-    console.log(searchForCategory)
-    console.log(searchForPrice)
-    console.log(shownItems)
 
     //delete all shop-items
     const items = document.querySelectorAll('.shop-partial');
