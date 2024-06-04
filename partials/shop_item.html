@@ -1,30 +1,32 @@
 {{#each shop_data.ITEMS}}
 <!--<div class="col-md-6 col-lg-6 col-xl-4">-->
 <div class="col p-2 shop-partial">
-    <div class="card" style="width: 18rem">
-        <div class="rounded position-relative fruite-item">
-            <div>
-                <img src="{{this.image}}" class="w-100 rounded" alt="">
-            </div>
-            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                 style="top: 10px; left: 10px;">{{this.category}}
-            </div>
-            <div class="p-3 border-top-0 rounded-bottom">
-                <h4>{{this.name}}</h4>
-                <p>{{this.description}}</p>
-                <div class="d-flex justify-content-between flex-lg-wrap">
-                    <p class="text-dark fs-5 fw-bold mb-0">{{this.price}}</p>
-                    <div class="p-2">
+    <a href="shop-detail.html?id={{ID}}">
+        <div class="card" style="width: 18rem">
+            <div class="rounded position-relative fruite-item">
+                <div>
+                    <img src="{{this.image}}" class="w-100 rounded" alt="">
+                </div>
+                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                     style="top: 10px; left: 10px;">{{this.category}}
+                </div>
+                <div class="p-3 border-top-0 rounded-bottom">
+                    <h4>{{this.name}}</h4>
+                    <p>{{this.description}}</p>
+                    <div class="d-flex justify-content-between flex-lg-wrap">
+                        <p class="text-dark fs-5 fw-bold mb-0">{{this.price}}</p>
+                        <div class="p-2">
 
-                    <button id="bestellen"
-                            class="btn border border-secondary rounded-pill px-3 text-primary"
-                            onclick="zumWarenkorb('{{this.name}}')">
-                            <i class="fa fa-shopping-bag me-2 text-primary"></i> In Warenkorb legen
-                    </button>
+                        <button id="bestellen"
+                                class="btn border border-secondary rounded-pill px-3 text-primary"
+                                onclick="zumWarenkorb('{{this.name}}')">
+                                <i class="fa fa-shopping-bag me-2 text-primary"></i> In Warenkorb legen
+                        </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </a>
 </div>
 {{/each}}
