@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
     <meta charset="utf-8">
     <title>OmasKnitAndNibble - Schicke Stiche & Süße Stücke – Direkt von Oma und Opa</title>
@@ -31,7 +33,11 @@
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/handlebars.min-v4.7.8.js"></script>
+    <script src="js/daten.js"></script>
     <script src="js/vanilla.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/shop.js"></script>
 </head>
 
 <body onload = "init()">
@@ -1200,15 +1206,7 @@
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
-<script>
-    function init() {
-        let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
-        render({
-            items: warenkorb.items,
-            num_of_items: warenkorb.num_of_items
-        })
-    }
-</script>
+
 </body>
 
 </html>
