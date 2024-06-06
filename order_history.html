@@ -31,11 +31,15 @@
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/handlebars.min-v4.7.8.js"></script>
+    <script src="js/daten.js"></script>
     <script src="js/vanilla.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/shop.js"></script>
     <script src="js/order_history.js"></script>
 </head>
 
-<body onload="init()">
+<body onload="initHistory()">
 
 <!--Navigation bar-->
 <div>
@@ -144,10 +148,12 @@
 <!--end of Footer-->
 
 <script>
-    function init() {
+    function initHistory() {
         let order_history = JSON.parse(localStorage.getItem("Order_history"))
         let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
         render({
+            shop_data: SHOP_DATA,
+            num_of_items: 0,
             orders: order_history.orders,
             items: warenkorb
         })
