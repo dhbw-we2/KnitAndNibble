@@ -19,6 +19,7 @@ function init() {
 }
 
 function zumWarenkorb(item_name) {
+    console.log(item_name)
     let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
     if (warenkorb == null){
         warenkorb = {}
