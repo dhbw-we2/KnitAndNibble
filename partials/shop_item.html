@@ -1,15 +1,17 @@
 {{#each shop_data.ITEMS}}
 <!--<div class="col-md-6 col-lg-6 col-xl-4">-->
 <div class="col p-2 shop-partial">
-    <a href="shop-detail.html?id={{ID}}">
+    <a>
         <div class="card" style="width: 18rem">
             <div class="rounded position-relative fruite-item">
+                <a href="shop-detail.html?id={{ID}}">
                 <div>
                     <img src="{{this.image}}" class="w-100 rounded" alt="">
                 </div>
                 <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                      style="top: 10px; left: 10px;">{{this.category}}
                 </div>
+                </a>
                 <div class="p-3 border-top-0 rounded-bottom">
                     <h4>{{this.name}}</h4>
                     <p>{{this.description}}</p>
