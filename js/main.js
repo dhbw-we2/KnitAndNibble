@@ -1,3 +1,4 @@
+/*
 (function ($) {
     "use strict";
 
@@ -11,6 +12,10 @@
     };
     spinner(0);
 
+*/
+
+(function ($) {
+    "use strict";
 
     // Fixed Navbar
     $(window).scroll(function () {
@@ -26,10 +31,11 @@
             } else {
                 $('.fixed-top').removeClass('shadow').css('top', 0);
             }
-        } 
+        }
     });
-    
-    
+
+})(jQuery);
+/*
    // Back to top button
    $(window).scroll(function () {
     if ($(this).scrollTop() > 300) {
@@ -54,8 +60,8 @@
         margin: 25,
         nav : true,
         navText : [
-            '<i class="bi bi-arrow-left"></i>',
-            '<i class="bi bi-arrow-right"></i>'
+            '<i class="bi bi-arrow-right"></i>',
+            '<i class="bi bi-arrow-left"></i>'
         ],
         responsiveClass: true,
         responsive: {
@@ -134,4 +140,4 @@
 
 
 })(jQuery);
-
+*/
