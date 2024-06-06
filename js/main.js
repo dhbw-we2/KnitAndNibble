@@ -12,10 +12,6 @@
     };
     spinner(0);
 
-*/
-
-(function ($) {
-    "use strict";
 
     // Fixed Navbar
     $(window).scroll(function () {
@@ -34,7 +30,6 @@
         }
     });
 
-})(jQuery);
 /*
    // Back to top button
    $(window).scroll(function () {
