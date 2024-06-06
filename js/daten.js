@@ -27,7 +27,7 @@ SHOP_DATA = {
         {
             name: "Knitted Scarf",
             description: "A cozy scarf to keep your neck warm",
-            image: "https://th.bing.com/th/id/R.5bbb079e82928fa1ed41134d17b0a38b?rik=9wobhdpPktROkQ&riu=http%3a%2f%2fwww.bindcrochet.com%2fwp-content%2fuploads%2f2018%2f10%2fhillas_wollgestrick_42403116_183521315874375_7808538388783087754_n.jpg&ehk=mmtCxf43iDNdkoI8Fi44SOYPLgUdfOzsXdGhWIf%2bvrI%3d&risl=&pid=ImgRaw&r=0",
+            image: "https://th.bing.com/th/id/R.f77e54a9ad38c18738ab9c442c7bf036?rik=vWYBJ9uXYCtuog&pid=ImgRaw&r=0",
             price: 3.50,
             category: "Wearables",
             ID: 4
