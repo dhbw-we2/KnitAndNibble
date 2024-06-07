@@ -153,9 +153,9 @@
         let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
         render({
             shop_data: SHOP_DATA,
-            num_of_items: 0,
-            orders: order_history.orders,
-            items: warenkorb
+            items: warenkorb.items,
+            num_of_items: warenkorb.num_of_items,
+            orders: order_history.orders
         })
     }
 </script>
