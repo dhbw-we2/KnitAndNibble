@@ -153,3 +153,53 @@ function startSearch() {
     //render new shop-items
     render({shop_data: shownItems}, '#shop-body')
 }
+
+function show_details(){
+    init()
+    var query = window.location.search.substring(1);
+    let ID = query.slice(3)
+
+    let currentItem
+    SHOP_DATA.ITEMS.forEach(item => {
+        if (item.ID === parseInt(ID)) {
+            currentItem = item
+        }
+    })
+
+    console.log(currentItem)
+
+    $('.detail-name').textContent = currentItem.name
+    $('.detail-description-short').textContent = currentItem.description
+    $('.detail-description-long').textContent = currentItem.description
+    $('.detail-image').src = currentItem.image
+    $('.detail-price').textContent = currentItem.price + "€"
+    $('.detail-category').textContent = currentItem.category
+
+    //let amount =
+
+    $('.detail-addtocart').addEventListener('click',function (e){
+        let amount = $('.detail-quanity-amount').value
+        for (let i = 0; i < amount; i++) {
+            zumWarenkorb(currentItem.name)
+        }
+        calculate_cart_total()
+        init()
+    })
+
+
+}
+
+function shopDetailQuantity(operation) {
+    let text = $('.detail-quanity-amount')
+    let amount = text.value
+    console.log()
+    if(operation === "plus")    {
+        ++amount
+    } else if(operation === "minus")    {
+        --amount
+    } else if(operation === "return")    {
+        return amount
+    }
+    text.value = amount
+}
+

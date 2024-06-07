@@ -39,41 +39,6 @@
 
 <body onload = "show_details()">
 
-<script>
-    function show_details(){
-        init()
-        var query = window.location.search.substring(1);
-        let ID = query.slice(3)
-
-        let currentItem
-        SHOP_DATA.ITEMS.forEach(item => {
-            if (item.ID === parseInt(ID)) {
-                currentItem = item
-            }
-        })
-
-        console.log(currentItem)
-
-        $('.detail-name').textContent = currentItem.name
-        $('.detail-description-short').textContent = currentItem.description
-        $('.detail-description-long').textContent = currentItem.description
-        $('.detail-image').src = currentItem.image
-        $('.detail-price').textContent = currentItem.price + "€"
-        $('.detail-category').textContent = currentItem.category
-
-        //let amount =
-
-        $('.detail-addtocart').addEventListener('click',function (e){
-            zumWarenkorb(currentItem.name)
-            calculate_cart_total()
-            init()
-        })
-
-
-    }
-</script>
-
-
 <!--Navigation bar-->
 <div>
     <script type="text/x-handlebars-template">
@@ -122,13 +87,13 @@
                             <p class="mb-4 detail-description-short">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.</p>
                             <div class="input-group quantity mb-5" style="width: 100px;">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
+                                    <button class="btn btn-sm btn-minus rounded-circle bg-light border" onclick="shopDetailQuantity('minus')" >
                                         <i class="fa fa-minus"></i>
                                     </button>
                                 </div>
-                                <input type="text" class="form-control form-control-sm text-center border-0" value="1">
+                                <input type="text" class="form-control form-control-sm text-center border-0 detail-quanity-amount" value="1">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                    <button class="btn btn-sm btn-plus rounded-circle bg-light border" onclick="shopDetailQuantity('plus')" >
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </div>
