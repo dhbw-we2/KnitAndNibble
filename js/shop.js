@@ -183,7 +183,7 @@ function show_details(){
 
     $('.detail-name').textContent = currentItem.name
     $('.detail-description-short').textContent = currentItem.description
-    $('.detail-description-long').textContent = currentItem.description
+    $('.detail-description-long').textContent = currentItem.description_long
     $('.detail-image').src = currentItem.image
     $('.detail-price').textContent = currentItem.price + "€"
     $('.detail-category').textContent = currentItem.category
