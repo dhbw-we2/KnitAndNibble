@@ -1,7 +1,6 @@
 function init() {
     localStorage.setItem("ITEMS_SHOWN", JSON.stringify(SHOP_DATA));
     let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
-    console.log(warenkorb)
         if (warenkorb && warenkorb.items && warenkorb.num_of_items){
             render({
                 shop_data: SHOP_DATA,
@@ -19,7 +18,6 @@ function init() {
 }
 
 function zumWarenkorb(item_name) {
-    console.log(item_name)
     let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
     if (warenkorb == null){
         warenkorb = {}
@@ -47,6 +45,7 @@ function zumWarenkorb(item_name) {
     localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
 
     calculate_cart_total()
+    refresh()
     refresh_header()
 }
 
@@ -190,7 +189,7 @@ function show_details(){
 }
 
 function shopDetailQuantity(operation) {
-    let text = $('.detail-quanity-amount')
+    let text = $('.detail-quantity-amount')
     let amount = text.value
     console.log()
     if(operation === "plus")    {
