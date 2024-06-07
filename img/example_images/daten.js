@@ -27,7 +27,7 @@ SHOP_DATA = {
         {
             name: "Knitted Scarf",
             description: "A cozy scarf to keep your neck warm",
-            image: "https://th.bing.com/th/id/R.f77e54a9ad38c18738ab9c442c7bf036?rik=vWYBJ9uXYCtuog&pid=ImgRaw&r=0",
+            image: "../img/example_images/scarf.jpeg",
             price: 3.50,
             category: "Wearables",
             ID: 4

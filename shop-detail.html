@@ -30,7 +30,7 @@
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/handlebars.min-v4.7.8.js"></script>
-    <script src="js/daten.js"></script>
+    <script src="img/example_images/daten.js"></script>
     <script src="js/vanilla.js"></script>
     <script src="js/header.js"></script>
     <script src="js/cart.js"></script>
@@ -194,6 +194,134 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+                </div>
+
+                <h1 class="fw-bold mb-0">Related products</h1>
+                <div class="container">
+                    <div class="row row-cols-4">
+                        <div class="col">
+                            <a>
+                                <div class="card" style="width: 18rem">
+                                    <div class="rounded position-relative fruite-item">
+                                        <a href="shop-detail.html?id=14">
+                                            <div>
+                                                <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.modernhoney.com%2Fwp-content%2Fuploads%2F2017%2F11%2FThin-and-Crispy-Chocolate-Chip-Cookies-2.jpg&f=1&nofb=1&ipt=2a9a9fb9fabab7a4f00be9cbb5427814f154cdff3c9fef97d19665dbc334c6a5&ipo=images" class="w-100 rounded" alt="">
+                                            </div>
+                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                                 style="top: 10px; left: 10px;">Cookies
+                                            </div>
+                                        </a>
+                                        <div class="p-3 border-top-0 rounded-bottom">
+                                            <h4>Tasty chocolate cookies</h4>
+                                            <p>extremely tasty and crispy</p>
+                                            <div class="d-flex justify-content-between flex-lg-wrap">
+                                                <p class="text-dark fs-5 fw-bold mb-0">3€</p>
+                                                <div class="p-2">
+
+                                                    <button class="btn border border-secondary rounded-pill px-3 text-primary"
+                                                            onclick="zumWarenkorb('Tasty chocolate cookies')">
+                                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> In Warenkorb legen
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a>
+                                <div class="card" style="width: 18rem">
+                                    <div class="rounded position-relative fruite-item">
+                                        <a href="shop-detail.html?id={{ID}}">
+                                            <div>
+                                                <img src="{{this.image}}" class="w-100 rounded" alt="">
+                                            </div>
+                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                                 style="top: 10px; left: 10px;">{{this.category}}
+                                            </div>
+                                        </a>
+                                        <div class="p-3 border-top-0 rounded-bottom">
+                                            <h4>{{this.name}}</h4>
+                                            <p>{{this.description}}</p>
+                                            <div class="d-flex justify-content-between flex-lg-wrap">
+                                                <p class="text-dark fs-5 fw-bold mb-0">{{this.price}}€</p>
+                                                <div class="p-2">
+
+                                                    <button id="bestellen"
+                                                            class="btn border border-secondary rounded-pill px-3 text-primary"
+                                                            onclick="zumWarenkorb('{{this.name}}')">
+                                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> In Warenkorb legen
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a>
+                                <div class="card" style="width: 18rem">
+                                    <div class="rounded position-relative fruite-item">
+                                        <a href="shop-detail.html?id={{ID}}">
+                                            <div>
+                                                <img src="{{this.image}}" class="w-100 rounded" alt="">
+                                            </div>
+                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                                 style="top: 10px; left: 10px;">{{this.category}}
+                                            </div>
+                                        </a>
+                                        <div class="p-3 border-top-0 rounded-bottom">
+                                            <h4>{{this.name}}</h4>
+                                            <p>{{this.description}}</p>
+                                            <div class="d-flex justify-content-between flex-lg-wrap">
+                                                <p class="text-dark fs-5 fw-bold mb-0">{{this.price}}€</p>
+                                                <div class="p-2">
+
+                                                    <button id="bestellen"
+                                                            class="btn border border-secondary rounded-pill px-3 text-primary"
+                                                            onclick="zumWarenkorb('{{this.name}}')">
+                                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> In Warenkorb legen
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a>
+                                <div class="card" style="width: 18rem">
+                                    <div class="rounded position-relative fruite-item">
+                                        <a href="shop-detail.html?id={{ID}}">
+                                            <div>
+                                                <img src="{{this.image}}" class="w-100 rounded" alt="">
+                                            </div>
+                                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                                 style="top: 10px; left: 10px;">{{this.category}}
+                                            </div>
+                                        </a>
+                                        <div class="p-3 border-top-0 rounded-bottom">
+                                            <h4>{{this.name}}</h4>
+                                            <p>{{this.description}}</p>
+                                            <div class="d-flex justify-content-between flex-lg-wrap">
+                                                <p class="text-dark fs-5 fw-bold mb-0">{{this.price}}€</p>
+                                                <div class="p-2">
+
+                                                    <button id="bestellen"
+                                                            class="btn border border-secondary rounded-pill px-3 text-primary"
+                                                            onclick="zumWarenkorb('{{this.name}}')">
+                                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> In Warenkorb legen
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                     </div>
                 </div>
             </div>
