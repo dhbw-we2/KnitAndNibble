@@ -1,20 +1,34 @@
 function init() {
     localStorage.setItem("ITEMS_SHOWN", JSON.stringify(SHOP_DATA));
     let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
-        if (warenkorb && warenkorb.items && warenkorb.num_of_items){
-            render({
-                shop_data: SHOP_DATA,
-                items: warenkorb.items,
-                num_of_items: warenkorb.num_of_items
-            })
-        } else {
-            render({
-                shop_data: SHOP_DATA,
-                items: null,
-                num_of_items: 0
-            })
-        }
 
+    if (warenkorb == null){
+        initWarenkorb()
+    }
+
+    if (warenkorb && warenkorb.items && warenkorb.num_of_items){
+        render({
+            shop_data: SHOP_DATA,
+            items: warenkorb.items,
+            num_of_items: warenkorb.num_of_items
+        })
+    } else {
+        render({
+            shop_data: SHOP_DATA,
+            items: null,
+            num_of_items: 0
+        })
+    }
+
+}
+
+function initWarenkorb(){
+    let warenkorb = {}
+    warenkorb.items = []
+    warenkorb.num_of_items = 0
+    warenkorb.subTotal = 0
+    warenkorb.total = 0
+    localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
 }
 
 function zumWarenkorb(item_name) {

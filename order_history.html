@@ -151,12 +151,21 @@
     function initHistory() {
         let order_history = JSON.parse(localStorage.getItem("Order_history"))
         let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
-        render({
-            shop_data: SHOP_DATA,
-            items: warenkorb.items,
-            num_of_items: warenkorb.num_of_items,
-            orders: order_history.orders
-        })
+        if (order_history !== null){
+            render({
+                shop_data: SHOP_DATA,
+                items: warenkorb.items,
+                num_of_items: warenkorb.num_of_items,
+                orders: order_history.orders
+            })
+        } else {
+            render({
+                shop_data: SHOP_DATA,
+                items: warenkorb.items,
+                num_of_items: warenkorb.num_of_items
+            })
+        }
+
     }
 </script>
 
