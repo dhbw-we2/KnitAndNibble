@@ -135,6 +135,7 @@ function unsearch(){
 
     $('.search_input').value = null
     $('#rangeInput').value = 0
+    $('.priceInput').value = 0
 
 
     startSearch()
@@ -170,12 +171,11 @@ function startSearch() {
         // Filter für die Kategorie
         if (searchForCategory) {
             matchesCategory = (item.category === searchForCategory);
-            console.log(matchesCategory);
         }
 
         // Filter für den Preis
         if (searchForPrice > 0) {
-            matchesPrice = item.price <= searchForPrice;
+            matchesPrice = item.price < searchForPrice;
         }
 
         // Artikel hinzufügen, wenn alle Kriterien erfüllt sind
@@ -209,7 +209,6 @@ function show_details(){
         }
     })
 
-    console.log(currentItem)
 
     $('.detail-name').textContent = currentItem.name
     $('.detail-description-short').textContent = currentItem.description
@@ -244,7 +243,6 @@ function show_details(){
 function shopDetailQuantity(operation) {
     let text = $('.detail-quantity-amount')
     let amount = text.value
-    console.log()
     if(operation === "plus")    {
         ++amount
     } else if(operation === "minus")    {
