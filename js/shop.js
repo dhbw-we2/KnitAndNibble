@@ -3,7 +3,7 @@ function init() {
     let warenkorb = JSON.parse(localStorage.getItem("Warenkorb"))
 
     if (warenkorb == null){
-        initWarenkorb()
+        initCart()
     }
 
     if (warenkorb && warenkorb.items && warenkorb.num_of_items){
@@ -22,16 +22,36 @@ function init() {
 
 }
 
-function initWarenkorb(){
-    let warenkorb = {}
-    warenkorb.items = []
-    warenkorb.num_of_items = 0
-    warenkorb.subTotal = 0
-    warenkorb.total = 0
-    localStorage.setItem("Warenkorb", JSON.stringify(warenkorb))
+/**
+ * Initiates the search process for items in the shop based on the provided search criteria.
+ * Filters items by name, category, and price, then updates the displayed items accordingly.
+ *
+ * @function initCart
+ *
+ * This function will initialize the Cart and therefore will protect from uninitialized variables
+ *
+ */
+function initCart(){
+    let cart = {}
+    cart.items = []
+    cart.num_of_items = 0
+    cart.subTotal = 0
+    cart.total = 0
+    localStorage.setItem("Warenkorb", JSON.stringify(cart))
 }
 
-function zumWarenkorb(item_name) {
+/**
+ * Initiates the search process for items in the shop based on the provided search criteria.
+ * Filters items by name, category, and price, then updates the displayed items accordingly.
+ *
+ * @function addToCart
+ *
+ * @param {string} [item_name] item to add
+ *
+ * This function will add the specified item to the cart
+ *
+ */
+function addToCart(item_name) {
     let warenkorb = JSON.parse(localStorage.getItem('Warenkorb'))
     if (warenkorb == null){
         warenkorb = {}
@@ -71,6 +91,9 @@ function findInList(items, item_name)   {
     return items.findIndex((item) => item.name === item_name)
 }
 
+/**
+ * Theese variables are for the search parameter
+ */
 let searchForName
 let searchForCategory
 let searchForPrice = 0
@@ -92,9 +115,13 @@ function priceSearch() {
     startSearch()
 }
 
-/*
-
-
+/**
+ * Initiates the search process for items in the shop based on the provided search criteria.
+ * Filters items by name, category, and price, then updates the displayed items accordingly.
+ *
+ * @function unsearch
+ *
+ *
  */
 function unsearch(){
     const radioButtons = document.querySelectorAll('[name="flexRadioDefault"]');
@@ -167,6 +194,9 @@ function startSearch() {
     render({shop_data: shownItems}, '#shop-body')
 }
 
+/**
+ * Handler for showing the Detail-Page
+ */
 function show_details(){
     init()
     var query = window.location.search.substring(1);
@@ -193,7 +223,7 @@ function show_details(){
     $('.detail-addtocart').addEventListener('click',function (e){
         let amount = $('.detail-quanity-amount').value
         for (let i = 0; i < amount; i++) {
-            zumWarenkorb(currentItem.name)
+            addToCart(currentItem.name)
         }
         calculate_cart_total()
         init()
@@ -202,6 +232,15 @@ function show_details(){
 
 }
 
+/**
+ *
+ * This is for calculating the quantity field in the shop
+ *
+ * @function shopDetailQuantity
+ *
+ * @param {string} [operation]
+ * @returns {number}
+ */
 function shopDetailQuantity(operation) {
     let text = $('.detail-quantity-amount')
     let amount = text.value
